@@ -48,21 +48,37 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsLoading(true);
     
     try {
+      console.log('Attempting to login with email:', email);
+      
+      // First, let's check if we can connect to the database at all
+      const { data: allUsers, error: allUsersError } = await supabase
+        .from('users')
+        .select('email')
+        .limit(10);
+      
+      console.log('All users in database:', allUsers);
+      console.log('Database connection error:', allUsersError);
+      
       // Query the users table to check if email exists
       const { data, error } = await supabase
         .from('users')
         .select('email')
-        .eq('email', email.toLowerCase())
-        .single();
+        .eq('email', email.toLowerCase());
+
+      console.log('Query result for email:', email.toLowerCase());
+      console.log('Query data:', data);
+      console.log('Query error:', error);
 
       if (error) {
-        console.log('Email not found in database:', error);
+        console.log('Database query error:', error);
         setIsLoading(false);
         return false;
       }
 
-      if (data) {
+      // Check if we got any results
+      if (data && data.length > 0) {
         // Email found in database, authenticate user
+        console.log('Email found, authenticating user');
         setIsAuthenticated(true);
         setUserEmail(email);
         
@@ -71,10 +87,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         
         setIsLoading(false);
         return true;
+      } else {
+        console.log('No matching email found in database');
+        setIsLoading(false);
+        return false;
       }
-
-      setIsLoading(false);
-      return false;
     } catch (err) {
       console.error('Login error:', err);
       setIsLoading(false);
