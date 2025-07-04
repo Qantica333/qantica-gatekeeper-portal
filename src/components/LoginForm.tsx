@@ -20,7 +20,7 @@ const LoginForm = () => {
     try {
       const success = await login(email);
       if (!success) {
-        setError('Access denied. Email not authorized.');
+        setError('Access denied. Email not found in our records.');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');

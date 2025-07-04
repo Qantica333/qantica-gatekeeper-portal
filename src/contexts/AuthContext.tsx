@@ -1,12 +1,13 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { appConfig } from '../config/app-config';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface AuthContextType {
   isAuthenticated: boolean;
   userEmail: string | null;
   login: (email: string) => Promise<boolean>;
   logout: () => void;
+  isLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -26,20 +27,65 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const login = async (email: string): Promise<boolean> => {
-    // Simple email validation against allowed list
-    if (appConfig.allowedEmails.includes(email.toLowerCase())) {
+  useEffect(() => {
+    // Check if user is already authenticated on mount
+    checkAuthStatus();
+  }, []);
+
+  const checkAuthStatus = () => {
+    const storedAuth = localStorage.getItem('qantica_auth');
+    if (storedAuth) {
+      const { email } = JSON.parse(storedAuth);
       setIsAuthenticated(true);
       setUserEmail(email);
-      return true;
     }
-    return false;
+    setIsLoading(false);
+  };
+
+  const login = async (email: string): Promise<boolean> => {
+    setIsLoading(true);
+    
+    try {
+      // Query the users table to check if email exists
+      const { data, error } = await supabase
+        .from('users')
+        .select('email')
+        .eq('email', email.toLowerCase())
+        .single();
+
+      if (error) {
+        console.log('Email not found in database:', error);
+        setIsLoading(false);
+        return false;
+      }
+
+      if (data) {
+        // Email found in database, authenticate user
+        setIsAuthenticated(true);
+        setUserEmail(email);
+        
+        // Store auth state in localStorage for persistence
+        localStorage.setItem('qantica_auth', JSON.stringify({ email }));
+        
+        setIsLoading(false);
+        return true;
+      }
+
+      setIsLoading(false);
+      return false;
+    } catch (err) {
+      console.error('Login error:', err);
+      setIsLoading(false);
+      return false;
+    }
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     setUserEmail(null);
+    localStorage.removeItem('qantica_auth');
   };
 
   return (
@@ -47,7 +93,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       isAuthenticated,
       userEmail,
       login,
-      logout
+      logout,
+      isLoading
     }}>
       {children}
     </AuthContext.Provider>
