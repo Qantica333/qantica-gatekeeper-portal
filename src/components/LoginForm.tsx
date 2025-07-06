@@ -4,7 +4,6 @@ import { useAuth } from '../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { appConfig } from '../config/app-config';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -30,13 +29,15 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-white mb-2 tracking-tight">
-            {appConfig.title}
-          </h1>
-          <div className="h-1 w-24 bg-gradient-to-r from-gray-600 to-white mx-auto"></div>
+          <img 
+            src="/lovable-uploads/d5c3b0bf-af34-4646-89bc-26395a9ca31a.png" 
+            alt="Qantica Logo" 
+            className="h-20 w-auto mx-auto mb-4"
+          />
+          <div className="h-1 w-24 bg-white mx-auto"></div>
         </div>
         
         <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
