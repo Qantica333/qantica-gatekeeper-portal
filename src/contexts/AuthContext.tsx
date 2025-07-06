@@ -48,37 +48,67 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsLoading(true);
     
     try {
+      console.log('=== DEBUGGING SUPABASE CONNECTION ===');
       console.log('Attempting to login with email:', email);
+      console.log('Supabase URL:', supabase.supabaseUrl);
+      console.log('Supabase Key exists:', !!supabase.supabaseKey);
       
-      // First, let's check if we can connect to the database at all
+      // Test basic connectivity to Supabase
+      const { data: connectionTest, error: connectionError } = await supabase
+        .from('users')
+        .select('*')
+        .limit(1);
+      
+      console.log('Connection test result:', connectionTest);
+      console.log('Connection test error:', connectionError);
+      
+      // Get total count of users in table
+      const { count, error: countError } = await supabase
+        .from('users')
+        .select('*', { count: 'exact', head: true });
+        
+      console.log('Total users count:', count);
+      console.log('Count error:', countError);
+      
+      // Get all users to see what's actually in the table
       const { data: allUsers, error: allUsersError } = await supabase
         .from('users')
-        .select('email')
-        .limit(10);
+        .select('*');
       
       console.log('All users in database:', allUsers);
-      console.log('Database connection error:', allUsersError);
+      console.log('All users error:', allUsersError);
       
-      // Query the users table to check if email exists
+      // Now try the specific email query with detailed logging
+      console.log('Searching for email (original):', email);
+      console.log('Searching for email (lowercase):', email.toLowerCase());
+      console.log('Searching for email (trimmed):', email.trim().toLowerCase());
+      
       const { data, error } = await supabase
         .from('users')
-        .select('email')
-        .eq('email', email.toLowerCase());
+        .select('*')
+        .eq('email', email.toLowerCase().trim());
 
-      console.log('Query result for email:', email.toLowerCase());
-      console.log('Query data:', data);
-      console.log('Query error:', error);
+      console.log('Specific email query result:', data);
+      console.log('Specific email query error:', error);
+      
+      // Try alternative query methods
+      const { data: ilikeData, error: ilikeError } = await supabase
+        .from('users')
+        .select('*')
+        .ilike('email', email.toLowerCase().trim());
+        
+      console.log('ILIKE query result:', ilikeData);
+      console.log('ILIKE query error:', ilikeError);
 
       if (error) {
-        console.log('Database query error:', error);
+        console.error('Database query error:', error);
         setIsLoading(false);
         return false;
       }
 
       // Check if we got any results
       if (data && data.length > 0) {
-        // Email found in database, authenticate user
-        console.log('Email found, authenticating user');
+        console.log('✅ Email found! User data:', data[0]);
         setIsAuthenticated(true);
         setUserEmail(email);
         
@@ -88,7 +118,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setIsLoading(false);
         return true;
       } else {
-        console.log('No matching email found in database');
+        console.log('❌ No matching email found in database');
+        console.log('Available emails in database:', allUsers?.map(u => u.email));
         setIsLoading(false);
         return false;
       }
