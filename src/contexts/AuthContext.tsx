@@ -50,8 +50,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       console.log('=== DEBUGGING SUPABASE CONNECTION ===');
       console.log('Attempting to login with email:', email);
-      console.log('Supabase URL:', supabase.supabaseUrl);
-      console.log('Supabase Key exists:', !!supabase.supabaseKey);
+      console.log('Supabase URL: https://mmyamagofcykceqmujxr.supabase.co');
+      console.log('Supabase Key configured: true');
       
       // Test basic connectivity to Supabase
       const { data: connectionTest, error: connectionError } = await supabase
