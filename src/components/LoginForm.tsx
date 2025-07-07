@@ -19,7 +19,7 @@ const LoginForm = () => {
     try {
       const success = await login(email);
       if (!success) {
-        setError('Access denied. Email not found in our records.');
+        setError('Access denied. Please check your email or try again later if you have exceeded the attempt limit.');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
@@ -32,11 +32,7 @@ const LoginForm = () => {
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img 
-            src="/lovable-uploads/d5c3b0bf-af34-4646-89bc-26395a9ca31a.png" 
-            alt="Qantica Logo" 
-            className="h-20 w-auto mx-auto mb-4"
-          />
+          <h1 className="text-4xl font-bold text-white mb-4">Qantica</h1>
           <div className="h-1 w-24 bg-white mx-auto"></div>
         </div>
         

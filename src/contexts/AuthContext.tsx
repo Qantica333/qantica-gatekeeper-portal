@@ -24,13 +24,56 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+// Rate limiting implementation
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
+const MAX_ATTEMPTS = 5;
+
+const getRateLimitKey = (email: string) => `login_attempts_${email}`;
+
+const isRateLimited = (email: string): boolean => {
+  const key = getRateLimitKey(email);
+  const stored = localStorage.getItem(key);
+  
+  if (!stored) return false;
+  
+  const { attempts, timestamp } = JSON.parse(stored);
+  const now = Date.now();
+  
+  // Reset if window has passed
+  if (now - timestamp > RATE_LIMIT_WINDOW) {
+    localStorage.removeItem(key);
+    return false;
+  }
+  
+  return attempts >= MAX_ATTEMPTS;
+};
+
+const recordLoginAttempt = (email: string) => {
+  const key = getRateLimitKey(email);
+  const stored = localStorage.getItem(key);
+  const now = Date.now();
+  
+  if (!stored) {
+    localStorage.setItem(key, JSON.stringify({ attempts: 1, timestamp: now }));
+    return;
+  }
+  
+  const { attempts, timestamp } = JSON.parse(stored);
+  
+  // Reset if window has passed
+  if (now - timestamp > RATE_LIMIT_WINDOW) {
+    localStorage.setItem(key, JSON.stringify({ attempts: 1, timestamp: now }));
+  } else {
+    localStorage.setItem(key, JSON.stringify({ attempts: attempts + 1, timestamp }));
+  }
+};
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is already authenticated on mount
     checkAuthStatus();
   }, []);
 
@@ -45,86 +88,36 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const login = async (email: string): Promise<boolean> => {
+    const trimmedEmail = email.toLowerCase().trim();
+    
+    // Check rate limiting
+    if (isRateLimited(trimmedEmail)) {
+      return false;
+    }
+    
     setIsLoading(true);
     
     try {
-      console.log('=== DEBUGGING SUPABASE CONNECTION ===');
-      console.log('Attempting to login with email:', email);
-      console.log('Supabase URL: https://mmyamagofcykceqmujxr.supabase.co');
-      console.log('Supabase Key configured: true');
-      
-      // Test basic connectivity to Supabase
-      const { data: connectionTest, error: connectionError } = await supabase
-        .from('users')
-        .select('*')
-        .limit(1);
-      
-      console.log('Connection test result:', connectionTest);
-      console.log('Connection test error:', connectionError);
-      
-      // Get total count of users in table
-      const { count, error: countError } = await supabase
-        .from('users')
-        .select('*', { count: 'exact', head: true });
-        
-      console.log('Total users count:', count);
-      console.log('Count error:', countError);
-      
-      // Get all users to see what's actually in the table
-      const { data: allUsers, error: allUsersError } = await supabase
-        .from('users')
-        .select('*');
-      
-      console.log('All users in database:', allUsers);
-      console.log('All users error:', allUsersError);
-      
-      // Now try the specific email query with detailed logging
-      console.log('Searching for email (original):', email);
-      console.log('Searching for email (lowercase):', email.toLowerCase());
-      console.log('Searching for email (trimmed):', email.trim().toLowerCase());
-      
       const { data, error } = await supabase
         .from('users')
-        .select('*')
-        .eq('email', email.toLowerCase().trim());
+        .select('email')
+        .eq('email', trimmedEmail)
+        .single();
 
-      console.log('Specific email query result:', data);
-      console.log('Specific email query error:', error);
+      if (error || !data) {
+        recordLoginAttempt(trimmedEmail);
+        setIsLoading(false);
+        return false;
+      }
+
+      setIsAuthenticated(true);
+      setUserEmail(trimmedEmail);
+      localStorage.setItem('qantica_auth', JSON.stringify({ email: trimmedEmail }));
       
-      // Try alternative query methods
-      const { data: ilikeData, error: ilikeError } = await supabase
-        .from('users')
-        .select('*')
-        .ilike('email', email.toLowerCase().trim());
-        
-      console.log('ILIKE query result:', ilikeData);
-      console.log('ILIKE query error:', ilikeError);
-
-      if (error) {
-        console.error('Database query error:', error);
-        setIsLoading(false);
-        return false;
-      }
-
-      // Check if we got any results
-      if (data && data.length > 0) {
-        console.log('✅ Email found! User data:', data[0]);
-        setIsAuthenticated(true);
-        setUserEmail(email);
-        
-        // Store auth state in localStorage for persistence
-        localStorage.setItem('qantica_auth', JSON.stringify({ email }));
-        
-        setIsLoading(false);
-        return true;
-      } else {
-        console.log('❌ No matching email found in database');
-        console.log('Available emails in database:', allUsers?.map(u => u.email));
-        setIsLoading(false);
-        return false;
-      }
+      setIsLoading(false);
+      return true;
     } catch (err) {
-      console.error('Login error:', err);
+      recordLoginAttempt(trimmedEmail);
       setIsLoading(false);
       return false;
     }
