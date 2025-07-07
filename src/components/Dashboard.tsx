@@ -9,7 +9,6 @@ import { Download, LogOut, FileText } from 'lucide-react';
 const Dashboard = () => {
   const { logout, userEmail } = useAuth();
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [availableFiles, setAvailableFiles] = useState<string[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,56 +22,16 @@ const Dashboard = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    // Get list of available files for debugging
-    const fetchAvailableFiles = async () => {
-      try {
-        console.log('Fetching available files from storage bucket...');
-        const { data, error } = await supabase.storage
-          .from('files')
-          .list('', {
-            limit: 100,
-            offset: 0,
-          });
-
-        if (error) {
-          console.error('Error fetching file list:', error);
-          return;
-        }
-
-        const fileNames = data?.map(file => file.name) || [];
-        console.log('Available files in bucket:', fileNames);
-        setAvailableFiles(fileNames);
-      } catch (err) {
-        console.error('Error in fetchAvailableFiles:', err);
-      }
-    };
-
-    fetchAvailableFiles();
-  }, []);
-
   const handleFileDownload = async (fileName: string, displayName: string) => {
     try {
-      console.log(`=== DOWNLOAD DEBUG INFO ===`);
-      console.log(`Attempting to download: ${fileName}`);
-      console.log(`Display name: ${displayName}`);
-      console.log(`Available files:`, availableFiles);
-      console.log(`File exists in list:`, availableFiles.includes(fileName));
-      
       const { data, error } = await supabase.storage
         .from('files')
         .download(fileName);
 
       if (error) {
-        console.error('Download error details:', {
-          message: error.message,
-          error: error
-        });
         alert(`Error downloading ${displayName}: ${error.message}`);
         return;
       }
-
-      console.log('Download successful, file size:', data.size);
       
       // Create blob URL and trigger download
       const url = URL.createObjectURL(data);
@@ -83,10 +42,7 @@ const Dashboard = () => {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      
-      console.log(`Successfully downloaded ${fileName}`);
     } catch (err) {
-      console.error('Unexpected download error:', err);
       alert(`Failed to download ${displayName}. Please try again.`);
     }
   };
@@ -129,11 +85,8 @@ const Dashboard = () => {
           <div className="flex items-center gap-4">
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                <span className="text-yellow-400">Q</span>antica
+                <span className="text-yellow-400">Q</span>ANTICA
               </h1>
-              <p className="text-gray-400 text-sm mt-1 hidden sm:block">
-                Empowering great stories
-              </p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -144,7 +97,7 @@ const Dashboard = () => {
               onClick={logout}
               variant="outline"
               size="sm"
-              className="border-gray-600 text-gray-600 hover:bg-gray-700 hover:text-white text-xs px-3 py-1"
+              className="bg-yellow-400 border-yellow-400 text-black hover:bg-yellow-500 hover:text-black text-xs px-3 py-1"
             >
               <LogOut className="w-3 h-3 mr-1" />
               Sign Out
@@ -164,8 +117,16 @@ const Dashboard = () => {
               transform: titleTransform
             }}
           >
+            {/* Q Logo */}
+            <div className="mb-8">
+              <img 
+                src="/lovable-uploads/fb79c7ac-e356-4db5-825e-a539a31d3c7a.png" 
+                alt="Q Logo" 
+                className="mx-auto w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain"
+              />
+            </div>
             <h2 className="text-6xl sm:text-8xl font-bold text-white mb-8">
-              Welcome to <span className="text-yellow-400">Q</span>antica
+              Welcome to <span className="text-yellow-400">Q</span>ANTICA
             </h2>
           </div>
         </section>
@@ -173,13 +134,13 @@ const Dashboard = () => {
         {/* Description Section */}
         <section className="min-h-screen flex items-center justify-center py-12">
           <div 
-            className="max-w-4xl mx-auto text-center transition-all duration-700 ease-out"
+            className="max-w-4xl mx-auto text-left transition-all duration-700 ease-out"
             style={{
               opacity: textOpacity,
               transform: textTransform
             }}
           >
-            <p className="text-xl sm:text-2xl text-gray-300 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
               <span className="text-yellow-400">Q</span>antica is a technology company that creates a creative ecosystem where creators are at the center, helping them enhance and monetize their intellectual properties (such as films and video games) through artificial intelligence and blockchain. Its approach combines cutting-edge technology with deep respect for the creator's vision, offering tools that amplify their work rather than limit it. With its QW3 method—already tested by creators with experience in entertainment platforms—<span className="text-yellow-400">Q</span>antica aims to connect generations of talent—past, present, and future—to transform the entertainment industry from the inside out, placing art and authenticity at the heart of the process.
             </p>
           </div>
@@ -196,17 +157,17 @@ const Dashboard = () => {
           >
             <div className="space-y-6">
               {/* One Pager Card */}
-              <Card className="bg-gray-800/30 border-gray-700 hover:bg-gray-800/50 transition-all duration-300 group">
+              <Card className="bg-yellow-400 border-yellow-400 hover:bg-yellow-500 transition-all duration-300 group">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-gradient-to-br from-gray-600 to-gray-700 rounded-lg">
-                      <FileText className="w-6 h-6 text-white" />
+                    <div className="p-2 bg-black rounded-lg">
+                      <FileText className="w-6 h-6 text-yellow-400" />
                     </div>
                     <div>
-                      <CardTitle className="text-white text-xl">
+                      <CardTitle className="text-black text-xl">
                         One Pager
                       </CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-gray-800">
                         Quick overview document
                       </CardDescription>
                     </div>
@@ -215,7 +176,7 @@ const Dashboard = () => {
                 <CardContent>
                   <Button 
                     onClick={() => handleFileDownload('One Pager.pdf', 'One Pager')}
-                    className="w-full bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white font-medium transition-all duration-200 group-hover:scale-[1.02]"
+                    className="w-full bg-black hover:bg-gray-800 text-yellow-400 font-medium transition-all duration-200 group-hover:scale-[1.02]"
                   >
                     <Download className="w-4 h-4 mr-2" />
                     Download
@@ -224,17 +185,17 @@ const Dashboard = () => {
               </Card>
 
               {/* Full Document Card */}
-              <Card className="bg-gray-800/30 border-gray-700 hover:bg-gray-800/50 transition-all duration-300 group">
+              <Card className="bg-yellow-400 border-yellow-400 hover:bg-yellow-500 transition-all duration-300 group">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-gradient-to-br from-gray-600 to-gray-700 rounded-lg">
-                      <FileText className="w-6 h-6 text-white" />
+                    <div className="p-2 bg-black rounded-lg">
+                      <FileText className="w-6 h-6 text-yellow-400" />
                     </div>
                     <div>
-                      <CardTitle className="text-white text-xl">
+                      <CardTitle className="text-black text-xl">
                         Complete Documentation
                       </CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-gray-800">
                         Comprehensive business plan
                       </CardDescription>
                     </div>
@@ -243,7 +204,7 @@ const Dashboard = () => {
                 <CardContent>
                   <Button 
                     onClick={() => handleFileDownload('Bussiness Plan.pdf', 'Complete Documentation')}
-                    className="w-full bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white font-medium transition-all duration-200 group-hover:scale-[1.02]"
+                    className="w-full bg-black hover:bg-gray-800 text-yellow-400 font-medium transition-all duration-200 group-hover:scale-[1.02]"
                   >
                     <Download className="w-4 h-4 mr-2" />
                     Download

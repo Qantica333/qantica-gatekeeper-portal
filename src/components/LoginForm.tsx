@@ -32,14 +32,15 @@ const LoginForm = () => {
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">Qantica</h1>
-          <div className="h-1 w-24 bg-white mx-auto"></div>
+          <h1 className="text-5xl font-bold text-white mb-4">
+            <span className="text-yellow-400">Q</span>ANTICA
+          </h1>
         </div>
         
-        <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+        <Card className="bg-yellow-400 border-yellow-400 backdrop-blur-sm">
           <CardHeader className="text-center">
-            <CardTitle className="text-white text-xl">Access Portal</CardTitle>
-            <CardDescription className="text-gray-400">
+            <CardTitle className="text-black text-xl">Access Portal</CardTitle>
+            <CardDescription className="text-gray-800">
               Enter your authorized email to continue
             </CardDescription>
           </CardHeader>
@@ -52,12 +53,12 @@ const LoginForm = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400 focus:border-gray-400"
+                  className="bg-white border-gray-300 text-black placeholder:text-gray-500 focus:border-gray-600"
                 />
               </div>
               
               {error && (
-                <div className="text-red-400 text-sm text-center bg-red-900/20 p-2 rounded border border-red-800">
+                <div className="text-red-600 text-sm text-center bg-red-100 p-2 rounded border border-red-300">
                   {error}
                 </div>
               )}
@@ -65,7 +66,7 @@ const LoginForm = () => {
               <Button 
                 type="submit" 
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white font-medium transition-all duration-200"
+                className="w-full bg-black hover:bg-gray-800 text-white font-medium transition-all duration-200"
               >
                 {isLoading ? 'Verifying...' : 'Enter'}
               </Button>
