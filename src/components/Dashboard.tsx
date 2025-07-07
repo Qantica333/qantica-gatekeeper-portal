@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -66,7 +65,6 @@ const Dashboard = () => {
       if (error) {
         console.error('Download error details:', {
           message: error.message,
-          statusCode: error.statusCode,
           error: error
         });
         alert(`Error downloading ${displayName}: ${error.message}`);
