@@ -79,8 +79,8 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      {/* Fixed Progress Indicator */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-3">
+      {/* Fixed Progress Indicator - Hidden on mobile to prevent overlap */}
+      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:flex flex-col space-y-3">
         {[0, 1, 2].map((index) => (
           <div
             key={index}
@@ -131,15 +131,16 @@ const Dashboard = () => {
               transform: titleTransform
             }}
           >
-            {/* Q Logo - Made Much Bigger */}
+            {/* Q Logo - Made Even Bigger */}
             <div className="mb-8">
               <img 
                 src="/lovable-uploads/289024cd-7882-4667-84d5-d16efa85e32c.png" 
                 alt="Q Logo" 
-                className="mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain"
+                className="mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] object-contain"
               />
             </div>
-            <h2 className="text-6xl sm:text-8xl font-bold text-white mb-8">
+            {/* Title - Made Smaller to Give More Space to Logo */}
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white mb-8">
               Welcome to <span className="text-yellow-400">Q</span>ANTICA
             </h2>
           </div>
@@ -148,13 +149,13 @@ const Dashboard = () => {
         {/* Description Section */}
         <section className="min-h-screen flex items-center justify-center py-12">
           <div 
-            className="max-w-4xl mx-auto transition-all duration-700 ease-out"
+            className="w-full max-w-4xl transition-all duration-700 ease-out px-4 sm:px-6 lg:px-8"
             style={{
               opacity: textOpacity,
               transform: textTransform
             }}
           >
-            {/* Left-aligned text */}
+            {/* Left-aligned text with proper margin */}
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed text-left">
               <span className="text-yellow-400">Q</span>ANTICA is a technology company that creates a creative ecosystem where creators are at the center, helping them enhance and monetize their intellectual properties (such as films and video games) through artificial intelligence and blockchain. Its approach combines cutting-edge technology with deep respect for the creator's vision, offering tools that amplify their work rather than limit it. With its QW3 method—already tested by creators with experience in entertainment platforms—<span className="text-yellow-400">Q</span>ANTICA aims to connect generations of talent—past, present, and future—to transform the entertainment industry from the inside out, placing art and authenticity at the heart of the process.
             </p>
@@ -164,7 +165,7 @@ const Dashboard = () => {
         {/* Files Section */}
         <section className="min-h-screen flex items-center justify-center py-12">
           <div 
-            className="max-w-2xl mx-auto w-full transition-all duration-700 ease-out"
+            className="max-w-2xl mx-auto w-full transition-all duration-700 ease-out px-4 sm:px-6 lg:px-8"
             style={{
               opacity: filesOpacity,
               transform: filesTransform
