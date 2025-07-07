@@ -23,16 +23,27 @@ const Dashboard = () => {
   }, []);
 
   const handleFileDownload = async (fileName: string, displayName: string) => {
+    console.log(`Attempting to download: ${fileName}`);
+    
     try {
       const { data, error } = await supabase.storage
         .from('files')
         .download(fileName);
 
+      console.log('Download response:', { data, error });
+
       if (error) {
+        console.error('Download error:', error);
         alert(`Error downloading ${displayName}: ${error.message}`);
         return;
       }
       
+      if (!data) {
+        console.error('No data received');
+        alert(`No file data received for ${displayName}`);
+        return;
+      }
+
       // Create blob URL and trigger download
       const url = URL.createObjectURL(data);
       const a = document.createElement('a');
@@ -42,7 +53,10 @@ const Dashboard = () => {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      
+      console.log(`Successfully downloaded: ${fileName}`);
     } catch (err) {
+      console.error('Download exception:', err);
       alert(`Failed to download ${displayName}. Please try again.`);
     }
   };
@@ -117,12 +131,12 @@ const Dashboard = () => {
               transform: titleTransform
             }}
           >
-            {/* Q Logo */}
+            {/* Q Logo - Made Much Bigger */}
             <div className="mb-8">
               <img 
-                src="/lovable-uploads/fb79c7ac-e356-4db5-825e-a539a31d3c7a.png" 
+                src="/lovable-uploads/289024cd-7882-4667-84d5-d16efa85e32c.png" 
                 alt="Q Logo" 
-                className="mx-auto w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain"
+                className="mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain"
               />
             </div>
             <h2 className="text-6xl sm:text-8xl font-bold text-white mb-8">
@@ -134,14 +148,15 @@ const Dashboard = () => {
         {/* Description Section */}
         <section className="min-h-screen flex items-center justify-center py-12">
           <div 
-            className="max-w-4xl mx-auto text-left transition-all duration-700 ease-out"
+            className="max-w-4xl mx-auto transition-all duration-700 ease-out"
             style={{
               opacity: textOpacity,
               transform: textTransform
             }}
           >
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
-              <span className="text-yellow-400">Q</span>antica is a technology company that creates a creative ecosystem where creators are at the center, helping them enhance and monetize their intellectual properties (such as films and video games) through artificial intelligence and blockchain. Its approach combines cutting-edge technology with deep respect for the creator's vision, offering tools that amplify their work rather than limit it. With its QW3 method—already tested by creators with experience in entertainment platforms—<span className="text-yellow-400">Q</span>antica aims to connect generations of talent—past, present, and future—to transform the entertainment industry from the inside out, placing art and authenticity at the heart of the process.
+            {/* Left-aligned text */}
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed text-left">
+              <span className="text-yellow-400">Q</span>ANTICA is a technology company that creates a creative ecosystem where creators are at the center, helping them enhance and monetize their intellectual properties (such as films and video games) through artificial intelligence and blockchain. Its approach combines cutting-edge technology with deep respect for the creator's vision, offering tools that amplify their work rather than limit it. With its QW3 method—already tested by creators with experience in entertainment platforms—<span className="text-yellow-400">Q</span>ANTICA aims to connect generations of talent—past, present, and future—to transform the entertainment industry from the inside out, placing art and authenticity at the heart of the process.
             </p>
           </div>
         </section>
