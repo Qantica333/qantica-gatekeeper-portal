@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -90,6 +91,16 @@ const Dashboard = () => {
     }
   };
 
+  // Calculate opacity and transform values based on scroll
+  const titleOpacity = Math.max(0, 1 - scrollProgress * 3);
+  const titleTransform = `translateY(${scrollProgress * 100}px)`;
+  
+  const textOpacity = scrollProgress > 0.2 ? Math.min(1, (scrollProgress - 0.2) * 2.5) : 0;
+  const textTransform = `translateY(${Math.max(0, 50 - scrollProgress * 150)}px)`;
+  
+  const filesOpacity = scrollProgress > 0.5 ? Math.min(1, (scrollProgress - 0.5) * 2) : 0;
+  const filesTransform = `translateY(${Math.max(0, 50 - (scrollProgress - 0.3) * 150)}px)`;
+
   const getProgressIndicatorPosition = () => {
     if (scrollProgress < 0.33) return 0;
     if (scrollProgress < 0.66) return 1;
@@ -118,7 +129,7 @@ const Dashboard = () => {
           <div className="flex items-center gap-4">
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Qantica
+                <span className="text-yellow-400">Q</span>antica
               </h1>
               <p className="text-gray-400 text-sm mt-1 hidden sm:block">
                 Empowering great stories
@@ -146,26 +157,44 @@ const Dashboard = () => {
       <main className="container mx-auto px-4">
         {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
+          <div 
+            className="text-center transition-all duration-700 ease-out"
+            style={{
+              opacity: titleOpacity,
+              transform: titleTransform
+            }}
+          >
             <h2 className="text-6xl sm:text-8xl font-bold text-white mb-8">
-              Welcome to Qantica
+              Welcome to <span className="text-yellow-400">Q</span>antica
             </h2>
           </div>
         </section>
 
         {/* Description Section */}
-        <section className="min-h-screen flex items-center justify-center py-20">
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="min-h-screen flex items-center justify-center py-12">
+          <div 
+            className="max-w-4xl mx-auto text-center transition-all duration-700 ease-out"
+            style={{
+              opacity: textOpacity,
+              transform: textTransform
+            }}
+          >
             <p className="text-xl sm:text-2xl text-gray-300 leading-relaxed">
-              Qantica is a technology company that creates a creative ecosystem where creators are at the center, helping them enhance and monetize their intellectual properties (such as films and video games) through artificial intelligence and blockchain. Its approach combines cutting-edge technology with deep respect for the creator's vision, offering tools that amplify their work rather than limit it. With its QW3 method—already tested by creators with experience in entertainment platforms—Qantica aims to connect generations of talent—past, present, and future—to transform the entertainment industry from the inside out, placing art and authenticity at the heart of the process.
+              <span className="text-yellow-400">Q</span>antica is a technology company that creates a creative ecosystem where creators are at the center, helping them enhance and monetize their intellectual properties (such as films and video games) through artificial intelligence and blockchain. Its approach combines cutting-edge technology with deep respect for the creator's vision, offering tools that amplify their work rather than limit it. With its QW3 method—already tested by creators with experience in entertainment platforms—<span className="text-yellow-400">Q</span>antica aims to connect generations of talent—past, present, and future—to transform the entertainment industry from the inside out, placing art and authenticity at the heart of the process.
             </p>
           </div>
         </section>
 
         {/* Files Section */}
-        <section className="min-h-screen flex items-center justify-center py-20">
-          <div className="max-w-2xl mx-auto w-full">
-            <div className="space-y-8">
+        <section className="min-h-screen flex items-center justify-center py-12">
+          <div 
+            className="max-w-2xl mx-auto w-full transition-all duration-700 ease-out"
+            style={{
+              opacity: filesOpacity,
+              transform: filesTransform
+            }}
+          >
+            <div className="space-y-6">
               {/* One Pager Card */}
               <Card className="bg-gray-800/30 border-gray-700 hover:bg-gray-800/50 transition-all duration-300 group">
                 <CardHeader>
