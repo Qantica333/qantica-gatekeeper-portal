@@ -16,18 +16,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titleOpacity, titleTransform 
           transform: titleTransform
         }}
       >
-        {/* Q Logo - Made Even Bigger */}
-        <div className="mb-8">
+        {/* Logo - Made Even Bigger as Main Focus */}
+        <div>
           <img 
             src="/lovable-uploads/289024cd-7882-4667-84d5-d16efa85e32c.png" 
             alt="Q Logo" 
-            className="mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] object-contain"
+            className="mx-auto w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] xl:w-[36rem] xl:h-[36rem] object-contain"
           />
         </div>
-        {/* Title - Made Smaller to Give More Space to Logo */}
-        <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white mb-8">
-          Welcome to <span className="text-yellow-400">Q</span>ANTICA
-        </h2>
       </div>
     </section>
   );
