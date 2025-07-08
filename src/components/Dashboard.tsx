@@ -25,11 +25,15 @@ const Dashboard = () => {
   } = useScrollAnimations();
   const { handleFileDownload } = useFileDownload();
 
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <div className="min-h-screen bg-black">
       <ProgressIndicator scrollProgress={scrollProgress} />
       
-      <DashboardHeader userEmail={userEmail} onLogout={logout} />
+      <DashboardHeader userEmail={userEmail} onLogout={handleLogout} />
 
       <main className="container mx-auto px-4">
         <HeroSection 

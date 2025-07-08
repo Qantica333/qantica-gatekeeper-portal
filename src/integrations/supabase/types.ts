@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      downloads: {
+        Row: {
+          created_at: string
+          email: string
+          file_name: string
+          id: number
+          ip_address: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          file_name: string
+          id?: number
+          ip_address?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          file_name?: string
+          id?: number
+          ip_address?: string | null
+        }
+        Relationships: []
+      }
       users: {
         Row: {
           created_at: string
@@ -37,7 +61,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_client_ip: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never

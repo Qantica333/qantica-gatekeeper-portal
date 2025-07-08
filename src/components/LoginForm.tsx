@@ -7,19 +7,32 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
+  const [isSignup, setIsSignup] = useState(false);
+  const { login, signup } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const success = await login(email);
-      if (!success) {
-        setError('Access denied. Please check your email or try again later if you have exceeded the attempt limit.');
+      const result = isSignup 
+        ? await signup(email, password)
+        : await login(email, password);
+
+      if (!result.success) {
+        setError(result.error || 'Authentication failed');
+      } else if (isSignup) {
+        setError('Please check your email to verify your account before logging in.');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
@@ -39,9 +52,11 @@ const LoginForm = () => {
         
         <Card className="bg-yellow-400 border-yellow-400 backdrop-blur-sm">
           <CardHeader className="text-center">
-            <CardTitle className="text-black text-xl">Access Portal</CardTitle>
+            <CardTitle className="text-black text-xl">
+              {isSignup ? 'Create Account' : 'Access Portal'}
+            </CardTitle>
             <CardDescription className="text-gray-800">
-              Enter your authorized email to continue
+              {isSignup ? 'Sign up for access' : 'Enter your credentials to continue'}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -57,6 +72,18 @@ const LoginForm = () => {
                 />
               </div>
               
+              <div>
+                <Input
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={6}
+                  className="bg-white border-gray-300 text-black placeholder:text-gray-500 focus:border-gray-600"
+                />
+              </div>
+              
               {error && (
                 <div className="text-red-600 text-sm text-center bg-red-100 p-2 rounded border border-red-300">
                   {error}
@@ -68,8 +95,18 @@ const LoginForm = () => {
                 disabled={isLoading}
                 className="w-full bg-black hover:bg-gray-800 text-white font-medium transition-all duration-200"
               >
-                {isLoading ? 'Verifying...' : 'Enter'}
+                {isLoading ? 'Please wait...' : (isSignup ? 'Sign Up' : 'Sign In')}
               </Button>
+              
+              <div className="text-center">
+                <button
+                  type="button"
+                  onClick={() => setIsSignup(!isSignup)}
+                  className="text-gray-800 hover:text-black underline text-sm"
+                >
+                  {isSignup ? 'Already have an account? Sign in' : 'Need an account? Sign up'}
+                </button>
+              </div>
             </form>
           </CardContent>
         </Card>

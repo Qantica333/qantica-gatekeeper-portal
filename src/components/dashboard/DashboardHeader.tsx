@@ -10,29 +10,28 @@ interface DashboardHeaderProps {
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({ userEmail, onLogout }) => {
   return (
-    <header className="border-b border-gray-700 bg-black/90 backdrop-blur-sm sticky top-0 z-40">
-      <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div className="flex items-center gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              <span className="text-yellow-400">Q</span>ANTICA
-            </h1>
-          </div>
+    <header className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-sm border-b border-gray-800">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div className="flex items-center space-x-4">
+          <h1 className="text-2xl font-bold text-white">
+            <span className="text-yellow-400">Q</span>ANTICA
+          </h1>
+          {userEmail && (
+            <span className="text-gray-300 text-sm">
+              Welcome, {userEmail}
+            </span>
+          )}
         </div>
-        <div className="flex items-center gap-4">
-          <span className="text-gray-400 text-sm hidden sm:inline">
-            {userEmail}
-          </span>
-          <Button 
-            onClick={onLogout}
-            variant="outline"
-            size="sm"
-            className="bg-yellow-400 border-yellow-400 text-black hover:bg-yellow-500 hover:text-black text-xs px-3 py-1"
-          >
-            <LogOut className="w-3 h-3 mr-1" />
-            Sign Out
-          </Button>
-        </div>
+        
+        <Button
+          onClick={onLogout}
+          variant="outline"
+          size="sm"
+          className="bg-transparent border-gray-600 text-white hover:bg-gray-800"
+        >
+          <LogOut className="w-4 h-4 mr-2" />
+          Logout
+        </Button>
       </div>
     </header>
   );

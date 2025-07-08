@@ -1,12 +1,16 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { User, Session } from '@supabase/supabase-js';
 
 interface AuthContextType {
   isAuthenticated: boolean;
   userEmail: string | null;
-  login: (email: string) => Promise<boolean>;
-  logout: () => void;
+  user: User | null;
+  session: Session | null;
+  login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  signup: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  logout: () => Promise<void>;
   isLoading: boolean;
 }
 
@@ -24,116 +28,110 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-// Rate limiting implementation
-const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
-const MAX_ATTEMPTS = 5;
-
-const getRateLimitKey = (email: string) => `login_attempts_${email}`;
-
-const isRateLimited = (email: string): boolean => {
-  const key = getRateLimitKey(email);
-  const stored = localStorage.getItem(key);
-  
-  if (!stored) return false;
-  
-  const { attempts, timestamp } = JSON.parse(stored);
-  const now = Date.now();
-  
-  // Reset if window has passed
-  if (now - timestamp > RATE_LIMIT_WINDOW) {
-    localStorage.removeItem(key);
-    return false;
-  }
-  
-  return attempts >= MAX_ATTEMPTS;
-};
-
-const recordLoginAttempt = (email: string) => {
-  const key = getRateLimitKey(email);
-  const stored = localStorage.getItem(key);
-  const now = Date.now();
-  
-  if (!stored) {
-    localStorage.setItem(key, JSON.stringify({ attempts: 1, timestamp: now }));
-    return;
-  }
-  
-  const { attempts, timestamp } = JSON.parse(stored);
-  
-  // Reset if window has passed
-  if (now - timestamp > RATE_LIMIT_WINDOW) {
-    localStorage.setItem(key, JSON.stringify({ attempts: 1, timestamp: now }));
-  } else {
-    localStorage.setItem(key, JSON.stringify({ attempts: attempts + 1, timestamp }));
-  }
-};
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    checkAuthStatus();
+    // Set up auth state listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        console.log('Auth state changed:', event, session);
+        setSession(session);
+        setUser(session?.user ?? null);
+        setIsLoading(false);
+      }
+    );
+
+    // Check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setIsLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const checkAuthStatus = () => {
-    const storedAuth = localStorage.getItem('qantica_auth');
-    if (storedAuth) {
-      const { email } = JSON.parse(storedAuth);
-      setIsAuthenticated(true);
-      setUserEmail(email);
-    }
-    setIsLoading(false);
-  };
-
-  const login = async (email: string): Promise<boolean> => {
-    const trimmedEmail = email.toLowerCase().trim();
-    
-    // Check rate limiting
-    if (isRateLimited(trimmedEmail)) {
-      return false;
-    }
-    
+  const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     
     try {
-      const { data, error } = await supabase
-        .from('users')
-        .select('email')
-        .eq('email', trimmedEmail)
-        .single();
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email.toLowerCase().trim(),
+        password
+      });
 
-      if (error || !data) {
-        recordLoginAttempt(trimmedEmail);
-        setIsLoading(false);
-        return false;
+      if (error) {
+        console.error('Login error:', error);
+        return { success: false, error: error.message };
       }
 
-      setIsAuthenticated(true);
-      setUserEmail(trimmedEmail);
-      localStorage.setItem('qantica_auth', JSON.stringify({ email: trimmedEmail }));
-      
-      setIsLoading(false);
-      return true;
+      if (!data.user) {
+        return { success: false, error: 'Login failed' };
+      }
+
+      return { success: true };
     } catch (err) {
-      recordLoginAttempt(trimmedEmail);
+      console.error('Login exception:', err);
+      return { success: false, error: 'An error occurred during login' };
+    } finally {
       setIsLoading(false);
-      return false;
     }
   };
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    setUserEmail(null);
-    localStorage.removeItem('qantica_auth');
+  const signup = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+    setIsLoading(true);
+    
+    try {
+      const redirectUrl = `${window.location.origin}/`;
+      
+      const { data, error } = await supabase.auth.signUp({
+        email: email.toLowerCase().trim(),
+        password,
+        options: {
+          emailRedirectTo: redirectUrl
+        }
+      });
+
+      if (error) {
+        console.error('Signup error:', error);
+        return { success: false, error: error.message };
+      }
+
+      if (!data.user) {
+        return { success: false, error: 'Signup failed' };
+      }
+
+      return { success: true };
+    } catch (err) {
+      console.error('Signup exception:', err);
+      return { success: false, error: 'An error occurred during signup' };
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const logout = async (): Promise<void> => {
+    setIsLoading(true);
+    try {
+      await supabase.auth.signOut();
+    } catch (err) {
+      console.error('Logout error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <AuthContext.Provider value={{
-      isAuthenticated,
-      userEmail,
+      isAuthenticated: !!user,
+      userEmail: user?.email ?? null,
+      user,
+      session,
       login,
+      signup,
       logout,
       isLoading
     }}>
