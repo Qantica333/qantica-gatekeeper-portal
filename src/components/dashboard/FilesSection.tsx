@@ -20,18 +20,18 @@ const FilesSection: React.FC<FilesSectionProps> = ({ filesOpacity, filesTransfor
       >
         <div className="space-y-6">
           <FileDownloadCard
-            title="One Pager"
+            title="Brief Introduction"
             description="Quick overview document"
             fileName="One Pager.pdf"
-            displayName="One Pager"
+            displayName="Brief Introduction"
             onDownload={onFileDownload}
           />
           
           <FileDownloadCard
-            title="Complete Documentation"
+            title="Qantica Business Plan -  July 2025"
             description="Comprehensive business plan"
             fileName="Bussiness Plan.pdf"
-            displayName="Complete Documentation"
+            displayName="Qantica Business Plan -  July 2025"
             onDownload={onFileDownload}
           />
         </div>
