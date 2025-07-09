@@ -29,7 +29,7 @@ const FilesSection: React.FC<FilesSectionProps> = ({ filesOpacity, filesTransfor
           
           <FileDownloadCard
             title="Qantica Business Plan -  July 2025"
-            description="Comprehensive business plan"
+            description="Detailed strategic roadmap"
             fileName="Bussiness Plan.pdf"
             displayName="Qantica Business Plan -  July 2025"
             onDownload={onFileDownload}
