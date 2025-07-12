@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
@@ -17,9 +18,9 @@ const LoginForm = () => {
     setError('');
 
     try {
-      const success = await login(email);
+      const success = await login(email, password);
       if (!success) {
-        setError('Access denied. Please check your email or try again later if you have exceeded the attempt limit.');
+        setError('Invalid email or password. Please check your credentials or try again later if you have exceeded the attempt limit.');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
@@ -41,7 +42,7 @@ const LoginForm = () => {
           <CardHeader className="text-center">
             <CardTitle className="text-black text-xl">Access Portal</CardTitle>
             <CardDescription className="text-gray-800">
-              Enter your authorized email to continue
+              Enter your email and password to continue
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -52,6 +53,17 @@ const LoginForm = () => {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="bg-white border-gray-300 text-black placeholder:text-gray-500 focus:border-gray-600"
+                />
+              </div>
+              
+              <div>
+                <Input
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="bg-white border-gray-300 text-black placeholder:text-gray-500 focus:border-gray-600"
                 />

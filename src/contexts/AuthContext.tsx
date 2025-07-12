@@ -1,11 +1,10 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 
 interface AuthContextType {
   isAuthenticated: boolean;
   userEmail: string | null;
-  login: (email: string) => Promise<boolean>;
+  login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
   isLoading: boolean;
 }
@@ -87,7 +86,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsLoading(false);
   };
 
-  const login = async (email: string): Promise<boolean> => {
+  const login = async (email: string, password: string): Promise<boolean> => {
     const trimmedEmail = email.toLowerCase().trim();
     
     // Check rate limiting
@@ -98,13 +97,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsLoading(true);
     
     try {
-      const { data, error } = await supabase
-        .from('users')
-        .select('email')
-        .eq('email', trimmedEmail)
-        .single();
-
-      if (error || !data) {
+      // Simple password check - you can replace this with your actual password
+      const MASTER_PASSWORD = 'qantica2025';
+      
+      if (password !== MASTER_PASSWORD) {
         recordLoginAttempt(trimmedEmail);
         setIsLoading(false);
         return false;
