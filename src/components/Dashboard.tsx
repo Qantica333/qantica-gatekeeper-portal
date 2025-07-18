@@ -8,6 +8,7 @@ import DashboardHeader from './dashboard/DashboardHeader';
 import HeroSection from './dashboard/HeroSection';
 import TitleSection from './dashboard/TitleSection';
 import DescriptionSection from './dashboard/DescriptionSection';
+import CompetenceDraw from './dashboard/CompetenceDraw';
 import FilesSection from './dashboard/FilesSection';
 
 const Dashboard = () => {
@@ -43,6 +44,11 @@ const Dashboard = () => {
         />
 
         <DescriptionSection 
+          textOpacity={textOpacity} 
+          textTransform={textTransform} 
+        />
+
+        <CompetenceDraw
           textOpacity={textOpacity} 
           textTransform={textTransform} 
         />
