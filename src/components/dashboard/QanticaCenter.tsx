@@ -21,6 +21,15 @@ const DescriptionSection: React.FC<QanticaCenterProps> = ({ textOpacity, textTra
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed text-left">
             However, we believe Qantica can be at the center of the industry, with the ability to interact with all participants.
           </p>
+          {/* Image Section */}
+          <div className="flex justify-center">
+            <img 
+              src="/lovable-uploads/QanticaCenter.webp" 
+              alt="Market Competition" 
+              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] object-contain"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </section>
