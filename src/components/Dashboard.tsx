@@ -48,7 +48,7 @@ const Dashboard = () => {
           textTransform={textTransform} 
         />
 
-        <CompetenceDraw
+        <MarketCompetition
           textOpacity={textOpacity} 
           textTransform={textTransform} 
         />
