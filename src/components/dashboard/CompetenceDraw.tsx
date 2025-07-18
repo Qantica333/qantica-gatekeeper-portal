@@ -1,12 +1,12 @@
 
 import React from 'react';
 
-interface CompetenceDrawProps {
+interface MarketCompetitionProps {
   textOpacity: number;
   textTransform: string;
 }
 
-const DescriptionSection: React.FC<CompetenceDrawProps> = ({ textOpacity, textTransform }) => {
+const DescriptionSection: React.FC<MarketCompetitionProps> = ({ textOpacity, textTransform }) => {
   return (
     <section className="min-h-screen flex items-center py-12">
       <div 
@@ -24,7 +24,7 @@ const DescriptionSection: React.FC<CompetenceDrawProps> = ({ textOpacity, textTr
           {/* Image Section */}
           <div className="flex justify-center">
             <img 
-              src="/lovable-uploads/your-image-path.webp" 
+              src="/lovable-uploads/CompetenceDraw2.webp" 
               alt="Market Competition" 
               className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] object-contain"
               loading="lazy"
@@ -36,4 +36,4 @@ const DescriptionSection: React.FC<CompetenceDrawProps> = ({ textOpacity, textTr
   );
 };
 
-export default CompetenceDraw;
+export default MarketCompetition;
