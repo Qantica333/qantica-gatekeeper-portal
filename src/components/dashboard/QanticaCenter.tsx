@@ -6,7 +6,7 @@ interface QanticaCenterProps {
   textTransform: string;
 }
 
-const DescriptionSection: React.FC<QanticaCenterProps> = ({ textOpacity, textTransform }) => {
+const QanticaCenter: React.FC<QanticaCenterProps> = ({ textOpacity, textTransform }) => {
   return (
     <section className="min-h-screen flex items-center py-12">
       <div 
