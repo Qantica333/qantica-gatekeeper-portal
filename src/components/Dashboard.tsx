@@ -39,12 +39,12 @@ const Dashboard = () => {
           titleTransform={titleTransform} 
         />
 
-        /* 
+        {/* 
        <TitleSection 
           titleOpacity={secondTitleOpacity} 
           titleTransform={secondTitleTransform} 
         />
-        */
+        */}
         
         <DescriptionSection 
           textOpacity={textOpacity} 
