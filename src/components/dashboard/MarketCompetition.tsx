@@ -23,7 +23,7 @@ const MarketCompetition: React.FC<MarketCompetitionProps> = ({ textOpacity, text
             <img 
               src="/lovable-uploads/CompetenceDraw2.webp" 
               alt="Market Competition" 
-              className="w-full max-w-4xl sm:max-w-5xl md:max-w-6xl lg:max-w-7xl xl:max-w-none object-contain"
+              className="w-full max-w-none object-contain"
               loading="lazy"
             />
           </div>
