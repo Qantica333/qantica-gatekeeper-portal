@@ -6,7 +6,7 @@ interface MarketCompetitionProps {
   textTransform: string;
 }
 
-const DescriptionSection: React.FC<MarketCompetitionProps> = ({ textOpacity, textTransform }) => {
+const MarketCompetition: React.FC<MarketCompetitionProps> = ({ textOpacity, textTransform }) => {
   return (
     <section className="min-h-screen flex items-center py-12">
       <div 
