@@ -53,6 +53,11 @@ const Dashboard = () => {
           textTransform={textTransform} 
         />
 
+        <QanticaCenter
+          textOpacity={textOpacity} 
+          textTransform={textTransform} 
+        />
+
         <FilesSection 
           filesOpacity={filesOpacity} 
           filesTransform={filesTransform} 
