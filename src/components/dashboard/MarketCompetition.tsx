@@ -24,7 +24,9 @@ const MarketCompetition: React.FC<MarketCompetitionProps> = ({ textOpacity, text
               src="/lovable-uploads/CompetenceDraw2.webp" 
               alt="Market Competition" 
               className="w-full max-w-none object-contain"
-              loading="lazy"
+              loading="eager"     
+              fetchPriority="high" 
+              decoding="async"  
             />
           </div>
         </div>
