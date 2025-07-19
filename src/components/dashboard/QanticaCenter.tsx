@@ -26,8 +26,10 @@ const QanticaCenter: React.FC<QanticaCenterProps> = ({ textOpacity, textTransfor
             <img 
               src="/lovable-uploads/QanticaCenter.webp" 
               alt="Market Competition" 
-              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] object-contain"
-              loading="lazy"
+              className="w-full max-w-none object-contain"
+              loading="eager"     
+              fetchPriority="high" 
+              decoding="async"  
             />
           </div>
         </div>
