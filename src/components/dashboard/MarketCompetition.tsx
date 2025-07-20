@@ -13,21 +13,27 @@ const MarketCompetition: React.FC<MarketCompetitionProps> = ({ textOpacity, text
           transform: textTransform
         }}
       >
-        {/* Left-aligned text with proper margin from left edge */}
-        <div className="max-w-none">
-          <p className="text-lg sm:text-xl text-gray-300 leading-relaxed text-left mb-8">
-            There are a few companies vying for a "similar" target market
-          </p>
-          {/* Image Section - Made Much Bigger */}
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-2xl sm:text-3xl md:text-4xl text-white font-light leading-relaxed tracking-wide">
+              There are a few companies vying for a{" "}
+              <span className="text-gray-300 italic">"similar"</span>{" "}
+              target market
+            </p>
+          </div>
+          {/* Image Section with enhanced presentation */}
           <div className="flex justify-center">
-            <img 
-              src="/lovable-uploads/CompetenceDraw2.webp" 
-              alt="Market Competition" 
-              className="w-full max-w-none object-contain"
-              loading="eager"     
-              fetchPriority="high" 
-              decoding="async"  
-            />
+            <div className="relative max-w-full overflow-hidden rounded-lg shadow-2xl">
+              <img 
+                src="/lovable-uploads/CompetenceDraw2.webp" 
+                alt="Market Competition Analysis" 
+                className="w-full h-auto object-contain transition-transform duration-300 hover:scale-105"
+                loading="eager"     
+                fetchPriority="high" 
+                decoding="async"  
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+            </div>
           </div>
         </div>
       </div>

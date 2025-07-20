@@ -21,7 +21,9 @@ const Dashboard = () => {
     secondTitleOpacity,
     secondTitleTransform,
     textOpacity, 
-    textTransform, 
+    textTransform,
+    qanticaOpacity,
+    qanticaTransform,
     filesOpacity, 
     filesTransform 
   } = useScrollAnimations();
@@ -57,8 +59,8 @@ const Dashboard = () => {
         />
 
         <QanticaCenter
-          textOpacity={textOpacity} 
-          textTransform={textTransform} 
+          textOpacity={qanticaOpacity} 
+          textTransform={qanticaTransform} 
         />
 
         <FilesSection 
