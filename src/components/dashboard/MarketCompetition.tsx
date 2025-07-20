@@ -27,7 +27,7 @@ const MarketCompetition: React.FC<MarketCompetitionProps> = ({ textOpacity, text
               <img 
                 src="/lovable-uploads/CompetenceDraw2.webp" 
                 alt="Market Competition Analysis" 
-                className="w-full h-auto object-contain transition-transform duration-300 hover:scale-105"
+                className="w-full h-auto object-contain max-h-[80vh]"
                 loading="eager"     
                 fetchPriority="high" 
                 decoding="async"  

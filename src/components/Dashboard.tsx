@@ -20,6 +20,8 @@ const Dashboard = () => {
     titleTransform,
     secondTitleOpacity,
     secondTitleTransform,
+    descriptionOpacity,
+    descriptionTransform,
     textOpacity, 
     textTransform,
     qanticaOpacity,
@@ -49,8 +51,8 @@ const Dashboard = () => {
         */}
         
         <DescriptionSection 
-          textOpacity={textOpacity} 
-          textTransform={textTransform} 
+          textOpacity={descriptionOpacity} 
+          textTransform={descriptionTransform} 
         />
 
         <MarketCompetition

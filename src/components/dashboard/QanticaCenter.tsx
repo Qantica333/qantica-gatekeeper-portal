@@ -20,7 +20,7 @@ const QanticaCenter: React.FC<QanticaCenterProps> = ({ textOpacity, textTransfor
           <div className="text-center mb-12">
             <p className="text-2xl sm:text-3xl md:text-4xl text-white font-light leading-relaxed tracking-wide">
               However, we believe{" "}
-              <span className="text-blue-400 font-medium">Qantica</span>{" "}
+              <span className="text-white font-medium"><span className="text-yellow-400">Q</span>antica</span>{" "}
               can be at the{" "}
               <span className="text-yellow-400 font-medium">center</span>{" "}
               of the industry
@@ -35,7 +35,7 @@ const QanticaCenter: React.FC<QanticaCenterProps> = ({ textOpacity, textTransfor
               <img 
                 src="/lovable-uploads/QanticaCenter.webp" 
                 alt="Qantica at the Center of Industry" 
-                className="w-full h-auto object-contain transition-transform duration-300 hover:scale-105"
+                className="w-full h-auto object-contain max-h-[80vh]"
                 loading="eager"     
                 fetchPriority="high" 
                 decoding="async"  
