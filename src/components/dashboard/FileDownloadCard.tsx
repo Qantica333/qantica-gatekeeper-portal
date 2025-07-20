@@ -57,30 +57,27 @@ const FileDownloadLayout: React.FC = () => {
   const industryQuotes = [
     {
       quote: "Innovation distinguishes between a leader and a follower.",
-      author: "Steve Jobs",
-      position: "Co-founder, Apple"
+      author: "Steve Jobs"
     },
     {
-      quote: "The way to get started is to quit talking and begin doing.",
-      author: "Walt Disney",
-      position: "Founder, Disney"
+      quote: "The biggest risk is not taking any risk... In a world that's changing quickly, the only strategy that is guaranteed to fail is not taking risks.",
+      author: "Mark Zuckerberg"
     },
     {
-      quote: "Your most unhappy customers are your greatest source of learning.",
-      author: "Bill Gates",
-      position: "Co-founder, Microsoft"
+      quote: "If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success.",
+      author: "James Cameron"
     }
   ];
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-8">
+    <div className="max-w-6xl mx-auto p-6 space-y-12">
       {/* File Download Cards - Side by Side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FileDownloadCard
-          title="Product Guide"
+          title="Brief Introduction"
           description="Complete guide with all features and specifications"
-          fileName="product-guide.pdf"
-          displayName="Product Guide 2025"
+          fileName="brief-intro.pdf"
+          displayName="Brief Introduction"
           onDownload={handleDownload}
         />
         <FileDownloadCard
@@ -93,30 +90,15 @@ const FileDownloadLayout: React.FC = () => {
       </div>
 
       {/* Industry Quotes Section */}
-      <div className="bg-gray-50 rounded-xl p-8 mt-12">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">What Industry Leaders Say</h2>
-          <p className="text-gray-600">Insights from visionaries who shaped the modern world</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {industryQuotes.map((item, index) => (
-            <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-start gap-3">
-                <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
-                <div>
-                  <blockquote className="text-gray-700 font-medium mb-4 italic">
-                    "{item.quote}"
-                  </blockquote>
-                  <div className="border-t pt-3">
-                    <p className="font-semibold text-gray-900">{item.author}</p>
-                    <p className="text-sm text-gray-600">{item.position}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {industryQuotes.map((item, index) => (
+          <div key={index} className="text-center p-6">
+            <blockquote className="text-lg font-medium text-gray-700 mb-4 italic">
+              "{item.quote}"
+            </blockquote>
+            <p className="font-semibold text-gray-900">- {item.author}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
