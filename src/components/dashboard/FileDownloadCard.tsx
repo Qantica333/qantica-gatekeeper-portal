@@ -38,7 +38,7 @@ const FileDownloadCard: React.FC<FileDownloadCardProps> = ({
       <CardContent>
         <Button 
           onClick={() => onDownload(fileName, displayName)}
-          className="w-full bg-black hover:bg-gray-800 text-yellow-400 font-medium transition-all duration-200 group-hover:scale-[1.02]"
+          className="w-full bg-black hover:bg-gray-800 text-yellow-400 font-medium transition-all duration-200 group-hover:scale-[1.02] rounded-sm py-3"
         >
           <Download className="w-4 h-4 mr-2" />
           Download
@@ -92,11 +92,18 @@ const FileDownloadLayout: React.FC = () => {
       {/* Industry Quotes Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {industryQuotes.map((item, index) => (
-          <div key={index} className="text-center p-6">
-            <blockquote className="text-lg font-medium text-gray-700 mb-4 italic">
-              "{item.quote}"
-            </blockquote>
-            <p className="font-semibold text-gray-900">- {item.author}</p>
+          <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="flex items-start gap-3">
+              <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+              <div>
+                <blockquote className="text-gray-700 font-medium mb-4 italic">
+                  "{item.quote}"
+                </blockquote>
+                <div className="border-t pt-3">
+                  <p className="font-semibold text-gray-900">- {item.author}</p>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
