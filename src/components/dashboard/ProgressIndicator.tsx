@@ -1,30 +1,27 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-interface ProgressIndicatorProps {
-  scrollProgress: number;
-}
+const ProgressIndicator: React.FC = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ scrollProgress }) => {
-  const getProgressIndicatorPosition = () => {
-    if (scrollProgress < 0.25) return 0;
-    if (scrollProgress < 0.5) return 1;
-    if (scrollProgress < 0.75) return 2;
-    return 3;
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrollTop / docHeight, 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:flex flex-col space-y-3">
-      {[0, 1, 2, 3].map((index) => (
-        <div
-          key={index}
-          className={`w-3 h-3 rounded-full transition-all duration-300 ${
-            getProgressIndicatorPosition() >= index
-              ? 'bg-white'
-              : 'bg-gray-600 border border-gray-500'
-          }`}
-        />
-      ))}
+    <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+      <div 
+        className="h-full bg-yellow-400 transition-all duration-150"
+        style={{ width: `${scrollProgress * 100}%` }}
+      />
     </div>
   );
 };

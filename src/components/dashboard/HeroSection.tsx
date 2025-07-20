@@ -1,22 +1,20 @@
 
 import React from 'react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
-interface HeroSectionProps {
-  titleOpacity: number;
-  titleTransform: string;
-}
+const HeroSection: React.FC = () => {
+  const { isVisible, elementRef } = useIntersectionObserver();
 
-const HeroSection: React.FC<HeroSectionProps> = ({ titleOpacity, titleTransform }) => {
   return (
-    <section className="min-h-screen flex items-center justify-center">
-      <div 
-        className="text-center transition-all duration-700 ease-out"
-        style={{
-          opacity: titleOpacity,
-          transform: titleTransform
-        }}
-      >
-        {/* Logo - Made Even Bigger as Main Focus */}
+    <section 
+      ref={elementRef}
+      className="min-h-screen flex items-center justify-center"
+    >
+      <div className={`text-center transition-all duration-500 ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-8'
+      }`}>
         <div>
           <img 
             src="/lovable-uploads/289024cd-7882-4667-84d5-d16efa85e32c.webp" 

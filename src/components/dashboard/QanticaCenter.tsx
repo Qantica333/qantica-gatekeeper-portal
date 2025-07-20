@@ -1,21 +1,20 @@
 
 import React from 'react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
-interface QanticaCenterProps {
-  textOpacity: number;
-  textTransform: string;
-}
+const QanticaCenter: React.FC = () => {
+  const { isVisible, elementRef } = useIntersectionObserver();
 
-const QanticaCenter: React.FC<QanticaCenterProps> = ({ textOpacity, textTransform }) => {
   return (
-    <section className="min-h-screen flex items-center py-12">
-      <div 
-        className="w-full transition-all duration-700 ease-out px-4 sm:px-6 lg:px-8"
-        style={{
-          opacity: textOpacity,
-          transform: textTransform
-        }}
-      >
+    <section 
+      ref={elementRef}
+      className="min-h-[80vh] flex items-center py-16"
+    >
+      <div className={`w-full transition-all duration-500 px-4 sm:px-6 lg:px-8 ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-8'
+      }`}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-2xl sm:text-3xl md:text-4xl text-white font-light leading-relaxed tracking-wide">
@@ -29,13 +28,12 @@ const QanticaCenter: React.FC<QanticaCenterProps> = ({ textOpacity, textTransfor
               with the ability to interact with all participants
             </p>
           </div>
-          {/* Image Section with enhanced presentation */}
           <div className="flex justify-center">
             <div className="relative max-w-full overflow-hidden rounded-lg shadow-2xl">
               <img 
                 src="/lovable-uploads/QanticaCenter.webp" 
                 alt="Qantica at the Center of Industry" 
-                className="w-full h-auto object-contain max-h-[80vh]"
+                className="w-full h-auto object-contain max-h-[70vh]"
                 loading="eager"     
                 fetchPriority="high" 
                 decoding="async"  
