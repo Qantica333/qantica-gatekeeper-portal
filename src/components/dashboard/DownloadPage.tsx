@@ -11,23 +11,29 @@ const DownloadPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
+    <div className="max-w-5xl mx-auto p-6 space-y-8">
       {/* Two buttons side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Button 
-          onClick={() => handleDownload('brief-intro.pdf', 'Brief Introduction')}
-          className="w-full h-16 bg-yellow-400 hover:bg-yellow-500 text-black font-medium text-lg border-2 border-yellow-400 transition-colors"
+          onClick={() => handleDownload('Brief Introduction.pdf', 'Brief Introduction')}
+          className="w-full h-24 bg-yellow-400 hover:bg-yellow-500 text-black border-2 border-yellow-400 transition-colors flex flex-col items-center justify-center p-4"
         >
-          <Download className="w-5 h-5 mr-2" />
-          Brief Introduction
+          <div className="flex items-center gap-2 mb-1">
+            <Download className="w-5 h-5" />
+            <span className="font-semibold text-lg">Brief Introduction</span>
+          </div>
+          <span className="text-sm text-gray-800">Quick overview document</span>
         </Button>
         
         <Button 
-          onClick={() => handleDownload('tech-docs.pdf', 'Technical Documentation')}
-          className="w-full h-16 bg-yellow-400 hover:bg-yellow-500 text-black font-medium text-lg border-2 border-yellow-400 transition-colors"
+          onClick={() => handleDownload('Qantica Business Plan - July 2025.pdf', 'Qantica Business Plan - July 2025')}
+          className="w-full h-24 bg-yellow-400 hover:bg-yellow-500 text-black border-2 border-yellow-400 transition-colors flex flex-col items-center justify-center p-4"
         >
-          <Download className="w-5 h-5 mr-2" />
-          Technical Documentation
+          <div className="flex items-center gap-2 mb-1">
+            <Download className="w-5 h-5" />
+            <span className="font-semibold text-lg">Qantica Business Plan - July 2025</span>
+          </div>
+          <span className="text-sm text-gray-800">Detailed strategic roadmap</span>
         </Button>
       </div>
 
