@@ -43,9 +43,9 @@ const DownloadPage: React.FC = () => {
           <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
           <div>
             <blockquote className="text-lg text-gray-700 font-medium italic leading-relaxed mb-3">
-              "Innovation distinguishes between a leader and a follower."
+              "While many writers worry about AI encroaching on authorship, a wave of startups sees opportunity — not to replace writers, they say, but to streamline the clutter around them."
             </blockquote>
-            <p className="font-semibold text-gray-900">- Steve Jobs</p>
+            <p className="font-semibold text-gray-900">- Billy Ray - Oscar-nominated screenwriter</p>
           </div>
         </div>
       </div>
