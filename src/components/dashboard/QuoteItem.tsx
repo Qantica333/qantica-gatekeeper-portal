@@ -13,7 +13,7 @@ interface IndustryQuotesProps {
 const IndustryQuotes: React.FC<IndustryQuotesProps> = ({ quotes }) => {
   const defaultQuotes = [
     {
-      quote: "Innovation distinguishes between a leader and a follower.",
+      quote: "TEST.",
       author: "Steve Jobs"
     },
     {
