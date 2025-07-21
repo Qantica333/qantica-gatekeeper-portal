@@ -17,7 +17,7 @@ const MarketCompetition: React.FC = () => {
       }`}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-2xl sm:text-3xl md:text-4xl text-white font-light leading-relaxed tracking-wide">
+            <p className="text-2xl sm:text-3xl md:text-4xl text-gray-300 font-light leading-relaxed tracking-wide">
               There are a few companies vying for a{" "}
               <span className="text-gray-300 italic">"similar"</span>{" "}
               target market
