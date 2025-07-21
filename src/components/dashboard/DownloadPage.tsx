@@ -45,7 +45,7 @@ const DownloadPage: React.FC = () => {
             <blockquote className="text-lg text-gray-700 font-medium italic leading-relaxed mb-3">
               "While many writers worry about AI encroaching on authorship, a wave of startups sees opportunity — not to replace writers, they say, but to streamline the clutter around them."
             </blockquote>
-            <p className="font-semibold text-gray-900">- Billy Ray - Oscar-nominated screenwriter</p>
+            <p className="font-semibold text-gray-900">- The Los Angeles Times 7/17 2025, interviewing many prominent industry people</p>
           </div>
         </div>
       </div>
