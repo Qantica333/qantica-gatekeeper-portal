@@ -55,9 +55,9 @@ const DownloadPage: React.FC = () => {
           <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
           <div>
             <blockquote className="text-lg text-gray-700 font-medium italic leading-relaxed mb-3">
-              "The future belongs to those who can harness AI not as a replacement for human creativity, but as an amplifier of it."
+              "As generative AI takes on more of filmmaking’s creative process, a deeper question emerges: What does it mean when stories are shaped by a system that, for now at least, can’t feel -and whose users may not need it to?"
             </blockquote>
-            <p className="font-semibold text-gray-900">- Tech Innovation Quarterly, March 2025</p>
+            <p className="font-semibold text-gray-900">- The Los Angeles Times 7/17 2025, interviewing many prominent industry people</p>
           </div>
         </div>
       </div>
