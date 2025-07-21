@@ -49,6 +49,18 @@ const DownloadPage: React.FC = () => {
           </div>
         </div>
       </div>
+            {/* Second quote box */}
+      <div className="bg-white rounded-lg p-6 shadow-sm border">
+        <div className="flex items-start gap-3">
+          <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+          <div>
+            <blockquote className="text-lg text-gray-700 font-medium italic leading-relaxed mb-3">
+              "The future belongs to those who can harness AI not as a replacement for human creativity, but as an amplifier of it."
+            </blockquote>
+            <p className="font-semibold text-gray-900">- Tech Innovation Quarterly, March 2025</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
