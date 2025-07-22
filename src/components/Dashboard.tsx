@@ -14,7 +14,6 @@ import Quote1Section from './dashboard/Quote1Section';
 import Quote2Section from './dashboard/Quote2Section';
 
 
-
 const Dashboard = () => {
   const { logout, userEmail } = useAuth();
   const { handleFileDownload } = useFileDownload();
