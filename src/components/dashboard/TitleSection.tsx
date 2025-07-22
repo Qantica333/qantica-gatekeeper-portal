@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Quote from 'lucide-react';
+import { Download, Quote } from 'lucide-react';
 
 
 interface TitleSectionProps {
