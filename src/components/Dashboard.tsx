@@ -24,8 +24,11 @@ const Dashboard = () => {
 
       <main className="container mx-auto px-4">
         <HeroSection />
-
-       <TitleSection />
+        
+        <TitleSection 
+          titleOpacity={1} 
+          titleTransform="translateY(0)" 
+        />
         
         <DescriptionSection />
 
