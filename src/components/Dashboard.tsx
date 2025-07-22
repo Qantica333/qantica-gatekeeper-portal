@@ -5,11 +5,12 @@ import { useFileDownload } from '../hooks/useFileDownload';
 import ProgressIndicator from './dashboard/ProgressIndicator';
 import DashboardHeader from './dashboard/DashboardHeader';
 import HeroSection from './dashboard/HeroSection';
+import TitleSection from './dashboard/TitleSection';
 import DescriptionSection from './dashboard/DescriptionSection';
 import MarketCompetition from './dashboard/MarketCompetition';
 import FilesSection from './dashboard/FilesSection';
 import QanticaCenter from './dashboard/QanticaCenter';
-import TitleSection from './dashboard/TitleSection';
+
 
 const Dashboard = () => {
   const { logout, userEmail } = useAuth();
