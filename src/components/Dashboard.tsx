@@ -10,6 +10,9 @@ import DescriptionSection from './dashboard/DescriptionSection';
 import MarketCompetition from './dashboard/MarketCompetition';
 import FilesSection from './dashboard/FilesSection';
 import QanticaCenter from './dashboard/QanticaCenter';
+import Quote1Section from './dashboard/Quote1Section';
+import Quote2Section from './dashboard/Quote2Section';
+
 
 
 const Dashboard = () => {
