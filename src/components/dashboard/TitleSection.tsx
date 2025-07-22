@@ -24,7 +24,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({ titleOpacity, titleTransfor
       </div>
     </section>
     */
-  <section 
+  <section>
       <div className="bg-white rounded-lg p-6 shadow-sm border">
         <div className="flex items-start gap-3">
           <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
@@ -36,8 +36,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({ titleOpacity, titleTransfor
           </div>
         </div>
       </div>
-
-      </section>
+</section>
   );
 };
 
