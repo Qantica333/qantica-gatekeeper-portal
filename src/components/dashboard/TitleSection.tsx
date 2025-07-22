@@ -8,7 +8,7 @@ interface TitleSectionProps {
 
 const TitleSection: React.FC<TitleSectionProps> = ({ titleOpacity, titleTransform }) => {
   return (
-    <section className="min-h-screen flex items-center justify-center">
+   /* <section className="min-h-screen flex items-center justify-center">
       <div 
         className="text-center transition-all duration-700 ease-out"
         style={{
@@ -21,6 +21,18 @@ const TitleSection: React.FC<TitleSectionProps> = ({ titleOpacity, titleTransfor
         </h2>
       </div>
     </section>
+    */
+      <div className="bg-white rounded-lg p-6 shadow-sm border">
+        <div className="flex items-start gap-3">
+          <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+          <div>
+            <blockquote className="text-lg text-gray-700 font-medium italic leading-relaxed mb-3">
+              "While many writers worry about AI encroaching on authorship, a wave of startups sees opportunity — not to replace writers, they say, but to streamline the clutter around them."
+            </blockquote>
+            <p className="font-semibold text-gray-900">- The Los Angeles Times 7/17 2025, interviewing many prominent industry people</p>
+          </div>
+        </div>
+      </div>
   );
 };
 
