@@ -24,7 +24,18 @@ const TitleSection: React.FC<TitleSectionProps> = ({ titleOpacity, titleTransfor
       </div>
     </section>
     */
-  <section>
+  const { isVisible, elementRef } = useIntersectionObserver();
+
+  return (
+    <section 
+      ref={elementRef}
+      className="min-h-[80vh] flex items-center py-16"
+    >
+      <div className={`w-full transition-all duration-500 px-4 sm:px-6 lg:px-8 ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-8'
+      }`}>
       <div className="bg-white rounded-lg p-6 shadow-sm border">
         <div className="flex items-start gap-3">
           <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
