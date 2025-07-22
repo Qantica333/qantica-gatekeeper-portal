@@ -3,27 +3,12 @@ import React from 'react';
 import { Quote } from 'lucide-react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
-interface TitleSectionProps {
+interface Quote2SectionProps {
   titleOpacity: number;
   titleTransform: string;
 }
 
 const Quote2Section: React.FC = () => {
-    /* return (
- <section className="min-h-screen flex items-center justify-center">
-      <div 
-        className="text-center transition-all duration-700 ease-out"
-        style={{
-          opacity: titleOpacity,
-          transform: titleTransform
-        }}
-      >
-        <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white">
-          <span className="text-yellow-400">Q</span>ANTICA
-        </h2>
-      </div>
-    </section>
-    */
   const { isVisible, elementRef } = useIntersectionObserver();
 
   return (
