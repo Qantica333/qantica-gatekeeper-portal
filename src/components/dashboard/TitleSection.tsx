@@ -8,9 +8,9 @@ interface TitleSectionProps {
   titleTransform: string;
 }
 
-const TitleSection: React.FC<TitleSectionProps> = ({ titleOpacity, titleTransform }) => {
-  return (
-   /* <section className="min-h-screen flex items-center justify-center">
+const TitleSection: React.FC = () => {
+    /* return (
+ <section className="min-h-screen flex items-center justify-center">
       <div 
         className="text-center transition-all duration-700 ease-out"
         style={{
