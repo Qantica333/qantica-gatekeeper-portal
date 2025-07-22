@@ -9,6 +9,7 @@ import DescriptionSection from './dashboard/DescriptionSection';
 import MarketCompetition from './dashboard/MarketCompetition';
 import FilesSection from './dashboard/FilesSection';
 import QanticaCenter from './dashboard/QanticaCenter';
+import TitleSection from './dashboard/TitleSection';
 
 const Dashboard = () => {
   const { logout, userEmail } = useAuth();
