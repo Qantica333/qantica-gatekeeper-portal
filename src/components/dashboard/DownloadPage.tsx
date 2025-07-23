@@ -62,8 +62,9 @@ const DownloadPage: React.FC = () => {
           </div>
         </div>
       </div>
+          */}
     </div>
-    */}
+
   );
 };
 
