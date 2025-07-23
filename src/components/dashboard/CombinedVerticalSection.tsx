@@ -26,7 +26,7 @@ const CombinedVerticalSection: React.FC = () => {
                 <blockquote className="text-sm sm:text-base md:text-base lg:text-lg text-gray-700 font-medium italic leading-relaxed mb-4">
                   "As generative AI takes on more of filmmaking's creative process, a deeper question emerges: What does it mean when stories are shaped by a system that, for now at least, can't feel -and whose users may not need it to?"
                 </blockquote>
-                <p className="font-semibold text-gray-900 text-lg">- The Los Angeles Times, Hollywood's being reshaped by generative AI. What does that mean for screenwriters?</p>
+                <p className="text-sm sm:text-base md:text-base lg:text-l font-semibold text-gray-900">- The Los Angeles Times, Hollywood's being reshaped by generative AI. What does that mean for screenwriters?</p>
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@ const CombinedVerticalSection: React.FC = () => {
                 <blockquote className="text-sm sm:text-base md:text-base lg:text-lg text-gray-700 font-medium italic leading-relaxed mb-4">
                   "While many writers worry about AI encroaching on authorship, a wave of startups sees opportunity — not to replace writers, they say, but to streamline the clutter around them."
                 </blockquote>
-                <p className="font-semibold text-gray-900 text-lg">-The LA Times, Hollywood's being reshaped by generative AI. What does that mean for screenwriters?</p>
+                <p className="text-sm sm:text-base md:text-base lg:text-l font-semibold text-gray-900">-The LA Times, Hollywood's being reshaped by generative AI. What does that mean for screenwriters?</p>
               </div>
             </div>
           </div>
