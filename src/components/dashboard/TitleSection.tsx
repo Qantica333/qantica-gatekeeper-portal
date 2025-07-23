@@ -5,7 +5,6 @@ import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 
 const TitleSection: React.FC = () => {
-
   const { isVisible, elementRef } = useIntersectionObserver();
 
   return (
