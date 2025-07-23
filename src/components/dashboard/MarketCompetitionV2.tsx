@@ -1,4 +1,4 @@
-import React from 'react';
+{/*import React from 'react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 const MarketCompetitionV2: React.FC = () => {
@@ -14,7 +14,7 @@ const MarketCompetitionV2: React.FC = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        {/* Texto a la izquierda */}
+    
         <div className="w-1/4 flex items-center justify-center px-4">
           <p className="text-xl sm:text-2xl md:text-2xl text-gray-300 font-light leading-relaxed tracking-wide text-center">
             There are a few companies vying for a{" "}
@@ -23,7 +23,7 @@ const MarketCompetitionV2: React.FC = () => {
           </p>
         </div>
 
-        {/* Imagen a la derecha (sin borde ni recuadro extra) */}
+
         <div className="w-3/4 flex items-center justify-center">
           <img
             src="/lovable-uploads/CompetenceDraw2.webp"
@@ -40,3 +40,4 @@ const MarketCompetitionV2: React.FC = () => {
 };
 
 export default MarketCompetitionV2;
+*/}
