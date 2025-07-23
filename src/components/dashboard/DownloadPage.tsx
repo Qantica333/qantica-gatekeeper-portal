@@ -35,9 +35,10 @@ const DownloadPage: React.FC = () => {
           </div>
           <span className="text-sm text-gray-800">Detailed strategic roadmap</span>
         </Button>
+        {/*   
       </div>
 
-      {/* Single quote box */}
+   
       <div className="bg-white rounded-lg p-6 shadow-sm border">
         <div className="flex items-start gap-3">
           <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
@@ -49,7 +50,7 @@ const DownloadPage: React.FC = () => {
           </div>
         </div>
       </div>
-            {/* Second quote box */}
+           
       <div className="bg-white rounded-lg p-6 shadow-sm border">
         <div className="flex items-start gap-3">
           <Quote className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
@@ -62,6 +63,7 @@ const DownloadPage: React.FC = () => {
         </div>
       </div>
     </div>
+    */}
   );
 };
 
