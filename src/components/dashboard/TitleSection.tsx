@@ -3,10 +3,6 @@ import React from 'react';
 import { Quote } from 'lucide-react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
-interface TitleSectionProps {
-  titleOpacity: number;
-  titleTransform: string;
-}
 
 const TitleSection: React.FC = () => {
 
