@@ -3,11 +3,6 @@ import React from 'react';
 import { Quote } from 'lucide-react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
-interface Quote1SectionProps {
-  titleOpacity: number;
-  titleTransform: string;
-}
-
 const Quote1Section: React.FC = () => {
 
   const { isVisible, elementRef } = useIntersectionObserver();
