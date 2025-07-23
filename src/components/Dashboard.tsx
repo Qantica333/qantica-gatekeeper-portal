@@ -7,7 +7,7 @@ import DashboardHeader from './dashboard/DashboardHeader';
 import HeroSection from './dashboard/HeroSection';
 //import TitleSection from './dashboard/TitleSection';
 import DescriptionSection from './dashboard/DescriptionSection';
-import MarketCompetitionV2 from './dashboard/MarketCompetitionV2';
+import MarketCompetition from './dashboard/MarketCompetition';
 import FilesSection from './dashboard/FilesSection';
 import QanticaCenter from './dashboard/QanticaCenter';
 import Quote1Section from './dashboard/Quote1Section';
@@ -30,7 +30,7 @@ const Dashboard = () => {
 
         <CombinedVerticalSection />
 
-        <MarketCompetitionV2 />
+        <MarketCompetition />
 
         <QanticaCenter />
 
