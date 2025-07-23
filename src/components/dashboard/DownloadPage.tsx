@@ -38,7 +38,6 @@ const DownloadPage: React.FC = () => {
 
       </div>
     </div>
-
   );
 };
 
