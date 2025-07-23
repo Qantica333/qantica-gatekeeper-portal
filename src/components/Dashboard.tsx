@@ -10,7 +10,7 @@ import DescriptionSection from './dashboard/DescriptionSection';
 import MarketCompetition from './dashboard/MarketCompetition';
 import FilesSection from './dashboard/FilesSection';
 import QanticaCenter from './dashboard/QanticaCenter';
-//import Quote1Section from './dashboard/Quote1Section';
+import Quote1Section from './dashboard/Quote1Section';
 //import Quote2Section from './dashboard/Quote2Section';
 
 
@@ -26,6 +26,8 @@ const Dashboard = () => {
 
       <main className="container mx-auto px-4">
         <HeroSection />
+
+        <Quote1Section />
         
         <DescriptionSection />
 
