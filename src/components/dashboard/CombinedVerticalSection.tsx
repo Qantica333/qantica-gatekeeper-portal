@@ -44,7 +44,7 @@ const CombinedVerticalSection: React.FC = () => {
             : 'opacity-0 -translate-x-8'
         }`}>
           <div className="mr-auto">
-            <p className="text-2xl sm:text-3xl md:text-4xl text-gray-300 leading-relaxed text-left font-light">
+            <p className="text-2xl sm:text-3xl md:text-4xl text-white font-light leading-relaxed tracking-wide">
               <span className="text-yellow-400">Q</span>ANTICA is a technology company that has built a creative media ecosystem where storytelling is at the center, helping writers enhance and monetize their IPs (in TV, films and video games) using artificial intelligence and blockchain. Its approach combines innovative tools with deep respect for the creators' vision offering them support that amplifies their work rather than limit it.—<span className="text-yellow-400">Q</span>ANTICA's QW3 process (patent pending) has been designed with writers with experience in streaming platforms and is the cornerstone to achieve the firm's ultimate goal: transforming the entertainment industry from the inside out, placing art and authenticity at the heart of the system.
             </p>
           </div>
