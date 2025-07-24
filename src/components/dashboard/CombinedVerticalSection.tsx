@@ -8,11 +8,11 @@ const CombinedVerticalSection: React.FC = () => {
   const { isVisible: quote2Visible, elementRef: quote2Ref } = useIntersectionObserver({ threshold: 0.3 });
 
   return (
-    <section className="min-h-[200vh] py-16">
+    <section className="py-16">
       {/* Quote 1 - Right Side */}
       <div 
         ref={quote1Ref as React.RefObject<HTMLDivElement>}
-        className="min-h-screen flex items-center justify-end px-4 sm:px-6 lg:px-8"
+        className="min-h-[60vh] flex items-center justify-end px-4 sm:px-6 lg:px-8"
       >
         <div className={`w-full max-w-2xl transition-all duration-700 ${
           quote1Visible 
@@ -36,7 +36,7 @@ const CombinedVerticalSection: React.FC = () => {
       {/* Description - Left Side */}
       <div 
         ref={descriptionRef as React.RefObject<HTMLDivElement>}
-        className="min-h-screen flex items-center justify-start px-4 sm:px-6 lg:px-8"
+        className="min-h-[60vh] flex items-center justify-start px-4 sm:px-6 lg:px-8"
       >
         <div className={`w-full max-w-4xl transition-all duration-700 ${
           descriptionVisible 
@@ -56,7 +56,7 @@ const CombinedVerticalSection: React.FC = () => {
       {/* Quote 2 - Right Side, Below Quote 1 */}
       <div 
         ref={quote2Ref as React.RefObject<HTMLDivElement>}
-        className="min-h-screen flex items-center justify-end px-4 sm:px-6 lg:px-8"
+        className="-screen flex items-center justify-end px-4 sm:px-6 lg:px-8"
       >
         <div className={`w-full max-w-2xl transition-all duration-700 ${
           quote2Visible 
