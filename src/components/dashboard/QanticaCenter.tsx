@@ -19,7 +19,7 @@ const QanticaCenter: React.FC = () => {
           <div className="text-center mb-12">
             <p className="text-2xl sm:text-3xl md:text-4xl text-white font-light leading-relaxed tracking-wide">
               However, we believe{" "}
-              <span className="text-white font-medium"><span className="text-yellow-400">Q</span>antica</span>{" "}
+              <span className="text-white font-medium"><span className="text-yellow-400">Q</span>ANTICA</span>{" "}
               can be at the{" "}
               <span className="text-yellow-400 font-medium">center</span>{" "}
               of the industry
