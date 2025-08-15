@@ -31,11 +31,21 @@ const DownloadPage: React.FC = () => {
         >
           <div className="flex items-center gap-2 mb-1">
             <Download className="w-5 h-5" />
-            <span className="font-semibold text-lg">Qantica Business Plan - July 2025</span>
+            <span className="font-semibold text-lg">Business Plan - July 2025</span>
           </div>
           <span className="text-sm text-gray-800">Detailed strategic roadmap</span>
         </Button>
 
+        <Button 
+          onClick={() => handleDownload('Founding Team.pdf', 'Founding Team')}
+          className="w-full h-24 bg-yellow-400 hover:bg-yellow-500 text-black border-2 border-yellow-400 transition-colors flex flex-col items-center justify-center p-4"
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <Download className="w-5 h-5" />
+            <span className="font-semibold text-lg">Founding Team</span>
+          </div>
+          <span className="text-sm text-gray-800">About us</span>
+        </Button>
       </div>
     </div>
   );
