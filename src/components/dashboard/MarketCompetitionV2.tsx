@@ -30,7 +30,7 @@ const MarketCompetitionV2: React.FC = () => {
             alt="Market Competition Analysis"
             className="w-full h-auto object-contain max-h-[70vh]"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="async"
             onError={(e) => {
               console.error('Error loading image:', e);

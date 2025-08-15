@@ -36,6 +36,12 @@ const Dashboard = () => {
 
         <FilesSection onFileDownload={handleFileDownload} />
       </main>
+
+      {/* Footer */}
+      <footer className="mt-12 pt-8 border-t border-gray-200 text-center text-sm text-gray-600">
+        <p>© 2025 Qantica. All rights reserved.</p>
+        <p>Access is restricted to authorized users only. Downloaded materials are confidential and proprietary.</p>
+      </footer>
     </div>
   );
 };
