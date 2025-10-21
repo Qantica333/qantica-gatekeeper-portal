@@ -98,7 +98,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     
     try {
       // Simple password check - you can replace this with your actual password
-      const MASTER_PASSWORD = 'QW3';
+      const MASTER_PASSWORD = 'QIP';
       
       if (password !== MASTER_PASSWORD) {
         recordLoginAttempt(trimmedEmail);
