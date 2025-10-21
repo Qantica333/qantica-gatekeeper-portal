@@ -9,7 +9,7 @@ const CombinedVerticalSection: React.FC = () => {
 
   return (
     <section className="py-16">
-      {/* Quote 1 - Right Side */}
+      {/* Quote 1 -  Right Side */}
       <div 
         ref={quote1Ref as React.RefObject<HTMLDivElement>}
         className="min-h-[60vh] flex items-center justify-end px-4 sm:px-6 lg:px-8"
