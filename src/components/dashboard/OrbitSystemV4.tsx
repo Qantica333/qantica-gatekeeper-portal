@@ -179,25 +179,72 @@ const OrbitSystemV4: React.FC = () => {
       item2.y -= cy;
     }
 
-    // Modal (simple, reemplaza listeners en cada init para evitar duplicados)
-    const itemData: Record<string, { title: string; description: string }> = {
-      netflix: { title: "Netflix", description: "Streamer." },
-      amazon: { title: "Amazon Prime Video", description: "Streamer." },
-      paramount: { title: "Paramount+", description: "Streamer." },
-      hbomax: { title: "HBO Max", description: "Streamer." },
-      disney: { title: "Disney+", description: "Streamer." },
-      appletv: { title: "Apple TV+", description: "Streamer." },
-      mubi: { title: "MUBI", description: "Streamer." },
-      a24: { title: "A24", description: "IP Asociado." },
-      youtube: { title: "YouTube", description: "IP Asociado." },
-      imdb: { title: "IMDb", description: "IP Asociado." },
-      animoca: { title: "Animoca Brands", description: "IP Asociado." },
-      story: { title: "Story", description: "IP Asociado." },
-      angelstudios: { title: "Angel Studios", description: "IP Asociado." },
-      patreon: { title: "Patreon", description: "IP Asociado." },
-      rockstargames: { title: "Rockstar Games", description: "IP Asociado." },
-      roblox: { title: "Roblox", description: "IP Asociado." },
-    };
+const itemData: Record<string, { title: string; description: string }> = {
+  netflix: {
+    title: "Netflix",
+    description: "Global leader in subscription streaming and a cornerstone outlet for wide-reach distribution. (Streamer)",
+  },
+  amazon: {
+    title: "Amazon Prime Video",
+    description: "Large on-demand platform tied to the Amazon ecosystem, mixing hit originals with licensed catalogs. (Streamer)",
+  },
+  paramount: {
+    title: "Paramount+",
+    description: "Service unifying CBS and Paramount libraries with franchise-driven originals. (Streamer)",
+  },
+  hbomax: {
+    title: "HBO Max",
+    description: "Home of premium, high-quality originals and films with a strong prestige footprint. (Streamer)",
+  },
+  disney: {
+    title: "Disney+",
+    description: "Dominant engine for family and franchise IP (Marvel, Star Wars, Pixar) at global scale. (Streamer)",
+  },
+  appletv: {
+    title: "Apple TV+",
+    description: "Growing slate of award-winning, creator-led originals with premium positioning. (Streamer)",
+  },
+  mubi: {
+    title: "MUBI",
+    description: "Curated arthouse and independent cinema for niche and auteur audiences. (Streamer)",
+  },
+  a24: {
+    title: "A24",
+    description: "Independent studio and distributor known for bold, innovative filmmaking and cult IP. (Associated IP)",
+  },
+  youtube: {
+    title: "YouTube",
+    description: "World’s largest video distribution channel—ideal for shorts, discovery, and UGC monetization. (Associated IP)",
+  },
+  imdb: {
+    title: "IMDb",
+    description: "Industry reference database for credits, ratings, and visibility across film and TV. (Associated IP)",
+  },
+  animoca: {
+    title: "Animoca Brands",
+    description: "Leader at the intersection of entertainment, gaming, and blockchain; gateway to Web3 and metaverse. (Associated IP)",
+  },
+  story: {
+    title: "Story",
+    description: "Represents development partners and narrative packaging across formats. (Associated IP)",
+  },
+  angelstudios: {
+    title: "Angel Studios",
+    description: "Studio powered by community crowdfunding and audience-driven greenlighting. (Associated IP)",
+  },
+  patreon: {
+    title: "Patreon",
+    description: "Direct-to-creator membership funding and community monetization platform. (Associated IP)",
+  },
+  rockstargames: {
+    title: "Rockstar Games",
+    description: "AAA studio behind expansive open-world franchises and cinematic storytelling. (Associated IP)",
+  },
+  roblox: {
+    title: "Roblox",
+    description: "Massive user-generated virtual worlds platform; key youth metaverse presence. (Associated IP)",
+  },
+};
 
     const showModal = (id: string | null) => {
       if (!id) return;
