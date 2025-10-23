@@ -30,7 +30,7 @@ const QanticaCenter: React.FC = () => {
 
           <div className="flex justify-center">
             <div className="relative w-full flex justify-center items-center">
-              <OrbitSystemV2 /> {/* ✅ componente actualizado */}
+              <OrbitSystemV3 /> {/* ✅ componente actualizado */}
             </div>
           </div>
         </div>
