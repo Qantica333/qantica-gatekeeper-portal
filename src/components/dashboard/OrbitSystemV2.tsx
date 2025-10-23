@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import styles from "./OrbitSystem.module.css";
+import styles from "./OrbitSystemV2.module.css";
 
 type Item = {
   id: string;
@@ -28,7 +28,7 @@ const ITEMS: Item[] = [
   { id: "roblox", label: "ROBLOX" },
 ];
 
-const OrbitSystem: React.FC = () => {
+const OrbitSystemV2: React.FC = () => {
   const { isVisible, elementRef } = useIntersectionObserver();
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
@@ -121,4 +121,4 @@ const OrbitSystem: React.FC = () => {
   );
 };
 
-export default OrbitSystem;
+export default OrbitSystemV2;
