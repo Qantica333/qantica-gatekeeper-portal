@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import OrbitSystemV3 from './OrbitSystemV3';
+import OrbitSystemV3 from './OrbitSystemV4';
 
-const QanticaCenter: React.FC = () => {
+const QanticaCenterV4: React.FC = () => {
   const { isVisible, elementRef } = useIntersectionObserver();
 
   return (
@@ -30,7 +30,7 @@ const QanticaCenter: React.FC = () => {
 
           <div className="flex justify-center">
             <div className="relative w-full flex justify-center items-center">
-              <OrbitSystemV3 /> {/* ✅ componente actualizado */}
+              <OrbitSystemV4 /> {/* ✅ componente actualizado */}
             </div>
           </div>
         </div>
