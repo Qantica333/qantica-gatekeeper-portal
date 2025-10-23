@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import OrbitSystemV3 from './OrbitSystemV4';
+import OrbitSystemV4 from './OrbitSystemV4';
 
 const QanticaCenter: React.FC = () => {
   const { isVisible, elementRef } = useIntersectionObserver();
