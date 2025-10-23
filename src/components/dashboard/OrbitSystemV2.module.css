@@ -1,0 +1,74 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  width: min(90vw, 600px);
+  height: min(90vw, 600px);
+}
+
+.centerQ {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: transparent;
+  border: 4px solid #ffd700;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+  font-weight: 900;
+  color: #ffd700;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.item {
+  position: absolute;
+  width: min(13vw, 55px);
+  height: min(13vw, 55px);
+  border-radius: 999px;
+  background-color: #D1D5DB;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  user-select: none;
+  transition: transform .2s ease-in-out;
+}
+
+.item:hover {
+  transform: scale(1.15);
+}
+
+.youtube {
+  background-color: #FF0000 !important;
+  color: white;
+}
+
+.logo {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .centerQ {
+    width: 90px;
+    height: 90px;
+    font-size: 55px;
+  }
+}
