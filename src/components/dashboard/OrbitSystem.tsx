@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
 
 /**
- * Componente: OrbitSystem
- * - Mantiene tu layout, estilos y física.
- * - Solo YouTube usa <img src="/logos/Logo_of_youtube.svg" />.
+ * Componente: OrbitSystem - Refactorizado para funcionar dentro de contenedores
+ * - Todos los estilos son scoped al wrapper
+ * - No afecta otros elementos de la página
+ * - Posicionamiento relativo al contenedor, no al viewport
  */
 const OrbitSystem: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -417,11 +418,11 @@ const OrbitSystem: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="orbit-wrapper" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '700px' }}>
       {/* Marco superior derecho */}
       <div className="text-frame frame-top">
         <div className="line-label">
-          <span className="highlight-yellow">Qantica’s</span> vision is to fluidly integrate the worlds of Film, TV and Video Games into valuable, long-lasting IPs.
+          <span className="highlight-yellow">Qantica's</span> vision is to fluidly integrate the worlds of Film, TV and Video Games into valuable, long-lasting IPs.
         </div>
       </div>
 
@@ -480,37 +481,35 @@ const OrbitSystem: React.FC = () => {
         </div>
       </div>
 
-      {/* Estilos (tu CSS tal cual, con una regla extra para <img> dentro de las esferas) */}
+      {/* Estilos scoped al componente */}
       <style>{`
-        :root { --center-radius:65px; --item-size:70px; --container-size:600px; --center-offset:300px; --orbit-path-size:530px; }
-        body { background-color:black; background-image: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), linear-gradient(135deg,#101010 0%,#000 100%); overflow:hidden; height:10vh; margin:0; font-family:Inter,sans-serif; text-align:center; display:flex; flex-direction:column; align-items:center;}
-        .container{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:var(--container-size); height:var(--container-size); display:flex; justify-content:center; align-items:center; z-index:100;}
-        .text-frame{position:absolute; z-index:200; width:350px; padding:20px; background:#000; border-radius:12px; border:1px solid rgba(255,215,0,.4); box-shadow:0 4px 30px rgba(0,0,0,.9);}
-        .line-label{color:#D1D5DB; font-size:14px; font-weight:500; line-height:1.3; text-shadow:0 0 5px rgba(209,213,219,.3);}
-        .highlight-yellow{color:#FFD700; text-shadow:0 0 8px rgba(255,215,0,.7);}
-        .frame-top{top:5vh; right:5vw; text-align:right;}
-        .frame-bottom{bottom:5vh; left:5vw; text-align:left;}
-        .background-line{position:absolute; width:800px; height:2px; background:#FFD700; z-index:1; top:50%; left:50%; transform:translate(-50%,-55%) rotate(-45deg);}
-        .center-circle{width:130px; height:130px; border:6px solid #FFD700; border-radius:50%; display:flex; justify-content:center; align-items:center; position:absolute; z-index:10; box-shadow:0 0 30px rgba(255,215,0,.6); background-color:rgba(0,0,0,.4); cursor:default; transition:all .2s ease-out;}
-        .center-circle:hover{transform:scale(1.05); box-shadow:0 0 50px rgba(255,215,0,.8);}
-        .center-circle::before{content:'Q'; color:#FFD700; font-size:90px; font-weight:900; text-shadow:0 0 15px rgba(255,215,0,1);}
-        .orbit-path{position:absolute; width:var(--orbit-path-size); height:var(--orbit-path-size); border:2px solid #FFD700; border-radius:50%; z-index:2;}
-        .orbital-item{position:absolute; width:var(--item-size); height:var(--item-size); border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:12px; font-weight:bold; color:black; text-align:center; padding:5px; box-sizing:border-box; cursor:pointer; top:50%; left:50%; transform:translate(-50%,-50%); transition:all .3s ease-out; z-index:15;}
-        .static-item{background:#D1D5DB; box-shadow:0 0 15px rgba(255,215,0,.8),0 0 35px rgba(255,215,0,.5); animation:pulseGlow 3s infinite alternate; will-change:transform,top,left;}
-        .moving-item{background:#FF0000 !important; box-shadow:0 0 20px rgba(255,0,0,1),0 0 40px rgba(255,0,0,.7); transition:none; will-change:transform,top,left;}
-        .orbital-item:hover{transform:scale(1.1); box-shadow:0 0 50px #FFD700,0 0 80px rgba(255,215,0,.8); z-index:100;}
-        .moving-item:hover{transform:scale(1.1); box-shadow:0 0 50px #FF0000,0 0 80px rgba(255,0,0,.8);}
+        .orbit-wrapper { --center-radius:65px; --item-size:70px; --container-size:600px; --center-offset:300px; --orbit-path-size:530px; }
+        .orbit-wrapper .container{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:var(--container-size); height:var(--container-size); display:flex; justify-content:center; align-items:center; z-index:1;}
+        .orbit-wrapper .text-frame{position:absolute; z-index:10; width:280px; padding:16px; background:rgba(0,0,0,0.8); border-radius:12px; border:1px solid rgba(255,215,0,.4); box-shadow:0 4px 30px rgba(0,0,0,.9); backdrop-filter:blur(10px);}
+        .orbit-wrapper .line-label{color:#D1D5DB; font-size:13px; font-weight:500; line-height:1.3; text-shadow:0 0 5px rgba(209,213,219,.3);}
+        .orbit-wrapper .highlight-yellow{color:#FFD700; text-shadow:0 0 8px rgba(255,215,0,.7);}
+        .orbit-wrapper .frame-top{top:20px; right:20px; text-align:right;}
+        .orbit-wrapper .frame-bottom{bottom:20px; left:20px; text-align:left;}
+        .orbit-wrapper .background-line{position:absolute; width:700px; height:2px; background:#FFD700; z-index:0; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg);}
+        .orbit-wrapper .center-circle{width:130px; height:130px; border:6px solid #FFD700; border-radius:50%; display:flex; justify-content:center; align-items:center; position:absolute; z-index:2; box-shadow:0 0 30px rgba(255,215,0,.6); background-color:rgba(0,0,0,.4); cursor:default; transition:all .2s ease-out;}
+        .orbit-wrapper .center-circle:hover{transform:scale(1.05); box-shadow:0 0 50px rgba(255,215,0,.8);}
+        .orbit-wrapper .center-circle::before{content:'Q'; color:#FFD700; font-size:90px; font-weight:900; text-shadow:0 0 15px rgba(255,215,0,1);}
+        .orbit-wrapper .orbit-path{position:absolute; width:var(--orbit-path-size); height:var(--orbit-path-size); border:2px solid #FFD700; border-radius:50%; z-index:1;}
+        .orbit-wrapper .orbital-item{position:absolute; width:var(--item-size); height:var(--item-size); border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:12px; font-weight:bold; color:black; text-align:center; padding:5px; box-sizing:border-box; cursor:pointer; top:50%; left:50%; transform:translate(-50%,-50%); transition:all .3s ease-out; z-index:3;}
+        .orbit-wrapper .static-item{background:#D1D5DB; box-shadow:0 0 15px rgba(255,215,0,.8),0 0 35px rgba(255,215,0,.5); animation:pulseGlow 3s infinite alternate; will-change:transform,top,left;}
+        .orbit-wrapper .moving-item{background:#FF0000 !important; box-shadow:0 0 20px rgba(255,0,0,1),0 0 40px rgba(255,0,0,.7); transition:none; will-change:transform,top,left;}
+        .orbit-wrapper .orbital-item:hover{transform:scale(1.1); box-shadow:0 0 50px #FFD700,0 0 80px rgba(255,215,0,.8); z-index:100;}
+        .orbit-wrapper .moving-item:hover{transform:scale(1.1); box-shadow:0 0 50px #FF0000,0 0 80px rgba(255,0,0,.8);}
         @keyframes pulseGlow {from{box-shadow:0 0 10px #FFD700,0 0 20px rgba(255,215,0,.7); opacity:.9;} to{box-shadow:0 0 15px #FFD700,0 0 30px #FFD700; opacity:1;}}
-        .color-4{background:#6D28D9;} .color-7{background:#FF0000;} .color-9{background:#F3CE00;} .color-10{background:#8DFF38;} .color-11{background:#FF4500;} .color-12{background:#1E90FF;} .color-13{background:#FFB6C1;} .color-15{background:#F0553A;} .color-16{background:#A329FC;}
-        .modal-overlay{display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:1000; justify-content:center; align-items:center;}
-        .modal-content{background:#1a1a1a; color:#D1D5DB; padding:30px; border-radius:15px; width:90%; max-width:450px; box-shadow:0 0 50px rgba(255,215,0,.7); border:2px solid #FFD700; animation:fadeIn .3s ease-out;}
+        .orbit-wrapper .color-4{background:#6D28D9;} .orbit-wrapper .color-7{background:#FF0000;} .orbit-wrapper .color-9{background:#F3CE00;} .orbit-wrapper .color-10{background:#8DFF38;} .orbit-wrapper .color-11{background:#FF4500;} .orbit-wrapper .color-12{background:#1E90FF;} .orbit-wrapper .color-13{background:#FFB6C1;} .orbit-wrapper .color-15{background:#F0553A;} .orbit-wrapper .color-16{background:#A329FC;}
+        .orbit-wrapper .modal-overlay{display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:1000; justify-content:center; align-items:center;}
+        .orbit-wrapper .modal-content{background:#1a1a1a; color:#D1D5DB; padding:30px; border-radius:15px; width:90%; max-width:450px; box-shadow:0 0 50px rgba(255,215,0,.7); border:2px solid #FFD700; animation:fadeIn .3s ease-out;}
         @keyframes fadeIn{from{opacity:0; transform:scale(.95);} to{opacity:1; transform:scale(1);}}
-        .modal-content h3{color:#FFD700; margin-top:0; border-bottom:2px solid #333; padding-bottom:10px;}
-        .modal-close{float:right; font-size:24px; font-weight:bold; line-height:1; color:#FFD700; cursor:pointer; border:none; background:none; margin-left:10px;}
-        /* Imagen dentro de la esfera (YouTube) */
-        .logo-img{width:70%; height:70%; object-fit:contain; display:block; pointer-events:none;}
+        .orbit-wrapper .modal-content h3{color:#FFD700; margin-top:0; border-bottom:2px solid #333; padding-bottom:10px;}
+        .orbit-wrapper .modal-close{float:right; font-size:24px; font-weight:bold; line-height:1; color:#FFD700; cursor:pointer; border:none; background:none; margin-left:10px;}
+        .orbit-wrapper .logo-img{width:70%; height:70%; object-fit:contain; display:block; pointer-events:none;}
       `}</style>
-    </>
+    </div>
   );
 };
 
