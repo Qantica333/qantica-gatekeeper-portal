@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
  * - Fondo gris Amazon para todos salvo YouTube (rojo).
  */
 
-const MOBILE_STATIC_IDS = ["amazon", "netflix", "disney", "hbomax", "paramount"]; // edita a gusto
+const MOBILE_STATIC_IDS = ["amazon", "netflix", "disney", "hbomax", "animoca", "rockstargames","story", "imdb"]; // edita a gusto
 
 const OrbitSystemV4: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
