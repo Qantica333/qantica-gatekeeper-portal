@@ -521,89 +521,90 @@ const itemData: Record<string, { title: string; description: string }> = {
         <div className="orbit-path" />
 
         {/* Sistema de contenido (condicional en móvil) */}
-        <div id="content-system">
-          {show("netflix") && (
-            <div className="orbital-item static-item" data-item-id="netflix">
-              NETFLIX
-            </div>
-          )}
-          {show("amazon") && (
-            <div className="orbital-item static-item" data-item-id="amazon">
-              AMAZON
-            </div>
-          )}
-          {show("paramount") && (
-            <div className="orbital-item static-item" data-item-id="paramount">
-              PARAMOUNT
-            </div>
-          )}
-          {show("a24") && (
-            <div className="orbital-item static-item" data-item-id="a24">
-              A24
-            </div>
-          )}
-          {show("hbomax") && (
-            <div className="orbital-item static-item" data-item-id="hbomax">
-              HBO MAX
-            </div>
-          )}
-          {show("disney") && (
-            <div className="orbital-item static-item" data-item-id="disney">
-              DISNEY+
-            </div>
-          )}
+  <div id="content-system">
+  {show("netflix") && (
+    <div className="orbital-item static-item" data-item-id="netflix">
+      <img src="/logos/netflix.svg" alt="Netflix" className="logo-img" />
+    </div>
+  )}
+  {show("amazon") && (
+    <div className="orbital-item static-item" data-item-id="amazon">
+      <img src="/logos/amazon.svg" alt="Amazon Prime Video" className="logo-img" />
+    </div>
+  )}
+  {show("paramount") && (
+    <div className="orbital-item static-item" data-item-id="paramount">
+      <img src="/logos/paramount.svg" alt="Paramount+" className="logo-img" />
+    </div>
+  )}
+  {show("a24") && (
+    <div className="orbital-item static-item" data-item-id="a24">
+      <img src="/logos/a24.svg" alt="A24" className="logo-img" />
+    </div>
+  )}
+  {show("hbomax") && (
+    <div className="orbital-item static-item" data-item-id="hbomax">
+      <img src="/logos/hbo-max.svg" alt="HBO Max" className="logo-img" />
+    </div>
+  )}
+  {show("disney") && (
+    <div className="orbital-item static-item" data-item-id="disney">
+      <img src="/logos/disney-plus.svg" alt="Disney+" className="logo-img" />
+    </div>
+  )}
 
-          {/* YouTube rojo + logo (siempre) */}
-          <div className="orbital-item moving-item" data-item-id="youtube" title="YouTube">
-            <img src="/logos/Logo_of_youtube.svg" alt="YouTube" className="logo-img" />
-          </div>
+  {/* YouTube rojo + logo (siempre) */}
+  <div className="orbital-item moving-item" data-item-id="youtube" title="YouTube">
+    <img src="/logos/youtube.svg" alt="YouTube" className="logo-img" />
+  </div>
 
-          {show("appletv") && (
-            <div className="orbital-item static-item" data-item-id="appletv">
-              APPLE TV+
-            </div>
-          )}
-          {show("imdb") && (
-            <div className="orbital-item static-item" data-item-id="imdb">
-              IMDB
-            </div>
-          )}
-          {show("animoca") && (
-            <div className="orbital-item static-item" data-item-id="animoca">
-              ANIMOCA BRANDS
-            </div>
-          )}
-          {show("story") && (
-            <div className="orbital-item static-item" data-item-id="story">
-              STORY
-            </div>
-          )}
-          {show("angelstudios") && (
-            <div className="orbital-item static-item" data-item-id="angelstudios">
-              ANGEL STUDIOS
-            </div>
-          )}
-          {show("patreon") && (
-            <div className="orbital-item static-item" data-item-id="patreon">
-              PATREON
-            </div>
-          )}
-          {show("mubi") && (
-            <div className="orbital-item static-item" data-item-id="mubi">
-              MUBI
-            </div>
-          )}
-          {show("rockstargames") && (
-            <div className="orbital-item static-item" data-item-id="rockstargames">
-              ROCKSTAR GAMES
-            </div>
-          )}
-          {show("roblox") && (
-            <div className="orbital-item static-item" data-item-id="roblox">
-              ROBLOX
-            </div>
-          )}
-        </div>
+  {show("appletv") && (
+    <div className="orbital-item static-item" data-item-id="appletv">
+      <img src="/logos/apple-tv.svg" alt="Apple TV+" className="logo-img" />
+    </div>
+  )}
+  {show("imdb") && (
+    <div className="orbital-item static-item" data-item-id="imdb">
+      <img src="/logos/imdb.svg" alt="IMDb" className="logo-img" />
+    </div>
+  )}
+  {show("animoca") && (
+    <div className="orbital-item static-item" data-item-id="animoca">
+      <img src="/logos/animoca.svg" alt="Animoca Brands" className="logo-img" />
+    </div>
+  )}
+  {show("story") && (
+    <div className="orbital-item static-item" data-item-id="story">
+      <img src="/logos/story.svg" alt="Story" className="logo-img" />
+    </div>
+  )}
+  {show("angelstudios") && (
+    <div className="orbital-item static-item" data-item-id="angelstudios">
+      <img src="/logos/angel-studios.svg" alt="Angel Studios" className="logo-img" />
+    </div>
+  )}
+  {show("patreon") && (
+    <div className="orbital-item static-item" data-item-id="patreon">
+      <img src="/logos/patreon.svg" alt="Patreon" className="logo-img" />
+    </div>
+  )}
+  {show("mubi") && (
+    <div className="orbital-item static-item" data-item-id="mubi">
+      <img src="/logos/mubi.svg" alt="MUBI" className="logo-img" />
+    </div>
+  )}
+  {show("rockstargames") && (
+    <div className="orbital-item static-item" data-item-id="rockstargames">
+      <img src="/logos/rockstar-games.svg" alt="Rockstar Games" className="logo-img" />
+    </div>
+  )}
+  {show("roblox") && (
+    <div className="orbital-item static-item" data-item-id="roblox">
+      <img src="/logos/roblox.svg" alt="Roblox" className="logo-img" />
+    </div>
+  )}
+</div>
+
       </div>
 
       {/* Modal */}
