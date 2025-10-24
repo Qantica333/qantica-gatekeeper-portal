@@ -522,9 +522,9 @@ const itemData: Record<string, { title: string; description: string }> = {
 
         {/* Sistema de contenido (condicional en móvil) */}
   <div id="content-system">
-  {show("netflix") && (
-    <div className="orbital-item static-item" data-item-id="netflix">
-      <img src="/logos/netflix.svg" alt="Netflix" className="logo-img" />
+      {show("hbomax") && (
+    <div className="orbital-item static-item" data-item-id="hbomax">
+      <img src="/logos/hbo-max.svg" alt="HBO Max" className="logo-img" />
     </div>
   )}
   {show("amazon") && (
@@ -542,9 +542,9 @@ const itemData: Record<string, { title: string; description: string }> = {
       <img src="/logos/a24.svg" alt="A24" className="logo-img" />
     </div>
   )}
-  {show("hbomax") && (
-    <div className="orbital-item static-item" data-item-id="hbomax">
-      <img src="/logos/hbo-max.svg" alt="HBO Max" className="logo-img" />
+  {show("netflix") && (
+    <div className="orbital-item static-item" data-item-id="netflix">
+      <img src="/logos/netflix.svg" alt="Netflix" className="logo-img" />
     </div>
   )}
   {show("disney") && (
