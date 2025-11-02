@@ -28,12 +28,12 @@ const DownloadPage: React.FC = () => {
           </Button>
           
           <Button 
-            onClick={() => handleDownload('Qantica Business Plan - October.pdf', 'Qantica Business Plan - October 2025')}
+            onClick={() => handleDownload('Business Plan November 2025.pdf', 'Qantica Business Plan - November 2025')}
             className="w-full h-24 bg-yellow-400 hover:bg-yellow-500 text-black border-2 border-yellow-400 transition-colors flex flex-col items-center justify-center p-4"
           >
             <div className="flex items-center gap-2 mb-1">
               <Download className="w-5 h-5" />
-              <span className="font-semibold text-lg">Business Plan - Oct. 2025</span>
+              <span className="font-semibold text-lg">Business Plan - Nov. 2025</span>
             </div>
             <span className="text-sm text-gray-800">Detailed strategic roadmap</span>
           </Button>
